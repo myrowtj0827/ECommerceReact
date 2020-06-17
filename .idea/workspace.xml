@@ -90,6 +90,7 @@
       <workItem from="1592187193668" duration="1167000" />
       <workItem from="1592189051239" duration="830000" />
       <workItem from="1592190408986" duration="75026000" />
+      <workItem from="1592393113620" duration="2205000" />
     </task>
     <servers />
   </component>
@@ -116,7 +117,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/search/searchFilter.js</url>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
