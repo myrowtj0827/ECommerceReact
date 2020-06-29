@@ -10,6 +10,8 @@ class SearchFilter extends React.Component {
     };
 
     render() {
+
+        alert()
         return (
             <>
                 <div className="search-page">
@@ -31,7 +33,7 @@ class SearchFilter extends React.Component {
                             <div className="max-center">
                                 <select className="filters-option">
                                     <option selected disabled>Location</option>
-                                    <option>Spain</option>
+                                    <option>Saudi Arabia</option>
                                     <option>Italy</option>
                                     <option>Russia</option>
                                     <option>Poland</option>
@@ -53,13 +55,13 @@ class SearchFilter extends React.Component {
 
                             <div className="w3-bar phone-center justify-content">
                                 <div className="w3-bar-item max-center ">
-                                    <span><img className="grid-icon" src={require("../assets/images/border-all-solid.svg")} /></span>
+                                    <span><img className="grid-icon" src={require("../assets/images/border-all-solid.svg")} alt="" /></span>
                                     <span className="w3-hover-text-blue view-left-padding">View</span>
                                 </div>
 
                                 <div className="w3-bar-item max-center">
                                     <span className="w3-hover-text-blue sort-right-padding">Sort</span>
-                                    <span><img className="sort-icon" src={require("../assets/images/sort.svg")} /></span>
+                                    <span><img className="sort-icon" src={require("../assets/images/sort.svg")} alt="" /></span>
                                 </div>
                             </div>
                         </div>
@@ -71,14 +73,14 @@ class SearchFilter extends React.Component {
                             <div className="w3-card best-match">
                                 <div className="w3-row justify-filter-content">
                                     <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/51589POT.png")} />
+                                        <img className="products-image" src={require("../assets/images/products/51589POT.png")} alt="" />
                                     </div>
 
                                     <div className="w3-col name-width">
                                         <div className="product-name">'Aardappel, rijst, pasta</div>
                                         <div className="w3-row justify-filter-content">
                                             <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.png")} />
+                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.png")} alt="" />
                                             </div>
                                             <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
                                         </div>
@@ -89,7 +91,7 @@ class SearchFilter extends React.Component {
                                     </div>
 
                                     <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} /></div>
+                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
                                     </div>
                                 </div>
                             </div>
@@ -97,14 +99,14 @@ class SearchFilter extends React.Component {
                             <div className="w3-card best-match">
                                 <div className="w3-row justify-filter-content">
                                     <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/94151POT.png")} />
+                                        <img className="products-image" src={require("../assets/images/products/94151POT.png")} alt="" />
                                     </div>
 
                                     <div className="w3-col name-width">
                                         <div className="product-name">'Aardappel, rijst, pasta</div>
                                         <div className="w3-row justify-filter-content">
                                             <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.svg")} />
+                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.svg")} alt="" />
                                             </div>
                                             <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
                                         </div>
@@ -115,7 +117,7 @@ class SearchFilter extends React.Component {
                                     </div>
 
                                     <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} /></div>
+                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
                                     </div>
                                 </div>
                             </div>
@@ -123,14 +125,14 @@ class SearchFilter extends React.Component {
                             <div className="w3-card best-match">
                                 <div className="w3-row justify-filter-content">
                                     <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/134051DS.png")} />
+                                        <img className="products-image" src={require("../assets/images/products/134051DS.png")} alt="" />
                                     </div>
 
                                     <div className="w3-col name-width">
                                         <div className="product-name">'Aardappel, rijst, pasta</div>
                                         <div className="w3-row justify-filter-content">
                                             <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon2.svg")} />
+                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon2.svg")} alt="" />
                                             </div>
                                             <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
                                         </div>
@@ -141,7 +143,7 @@ class SearchFilter extends React.Component {
                                     </div>
 
                                     <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} /></div>
+                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
                                     </div>
                                 </div>
                             </div>
@@ -149,14 +151,14 @@ class SearchFilter extends React.Component {
                             <div className="w3-card best-match">
                                 <div className="w3-row justify-filter-content">
                                     <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/145330PAK.png")} />
+                                        <img className="products-image" src={require("../assets/images/products/145330PAK.png")} alt="" />
                                     </div>
 
                                     <div className="w3-col name-width">
                                         <div className="product-name">'Aardappel, rijst, pasta</div>
                                         <div className="w3-row justify-filter-content">
                                             <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.png")} />
+                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.png")} alt="" />
                                             </div>
                                             <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
                                         </div>
@@ -167,7 +169,7 @@ class SearchFilter extends React.Component {
                                     </div>
 
                                     <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} /></div>
+                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
                                     </div>
                                 </div>
                             </div>
@@ -175,14 +177,14 @@ class SearchFilter extends React.Component {
                             <div className="w3-card best-match">
                                 <div className="w3-row justify-filter-content">
                                     <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/163074STK.png")} />
+                                        <img className="products-image" src={require("../assets/images/products/163074STK.png")} alt="" />
                                     </div>
 
                                     <div className="w3-col name-width">
                                         <div className="product-name">'Aardappel, rijst, pasta</div>
                                         <div className="w3-row justify-filter-content">
                                             <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.svg")} />
+                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.svg")} alt="" />
                                             </div>
                                             <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
                                         </div>
@@ -193,7 +195,7 @@ class SearchFilter extends React.Component {
                                     </div>
 
                                     <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} /></div>
+                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
                                     </div>
                                 </div>
                             </div>
@@ -201,14 +203,14 @@ class SearchFilter extends React.Component {
                             <div className="w3-card best-match">
                                 <div className="w3-row justify-filter-content">
                                     <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/171448POT.png")} />
+                                        <img className="products-image" src={require("../assets/images/products/171448POT.png")} alt="" />
                                     </div>
 
                                     <div className="w3-col name-width">
                                         <div className="product-name">'Aardappel, rijst, pasta</div>
                                         <div className="w3-row justify-filter-content">
                                             <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon2.svg")} />
+                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon2.svg")} alt="" />
                                             </div>
                                             <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
                                         </div>
@@ -219,7 +221,7 @@ class SearchFilter extends React.Component {
                                     </div>
 
                                     <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} /></div>
+                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +229,7 @@ class SearchFilter extends React.Component {
 
                         <div className="next-prev-btn">
                             <div className="np-width">
-                                <img className="btn-np" src={require("../assets/images/back.png")} />
+                                <img className="btn-np" src={require("../assets/images/back.png")} alt="" />
                                 <div className="btn-np">1</div>
                                 <div className="btn-np">2</div>
                                 <div className="btn-np">3</div>
@@ -235,7 +237,7 @@ class SearchFilter extends React.Component {
                                 <div className="btn-NL">Next</div>
 
                                 <div className="btn-NL">Last</div>
-                                <img className="btn-np"  src={require("../assets/images/next.png")} />
+                                <img className="btn-np"  src={require("../assets/images/next.png")} alt="" />
                             </div>
                         </div>
                     </div>

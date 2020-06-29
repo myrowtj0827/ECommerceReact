@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
+import axios from "axios"
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// import OwlCarousel from 'react-owl-carousel';
-// import 'owl.carousel/dist/assets/owl.carousel.css';
-// import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 import SearchFilter from "./search/searchFilter";
 import Home from "./home/home";
@@ -21,6 +19,15 @@ class App extends React.Component {
     //         return <Redirect to='/target' />
     //     }
     // };
+    componentDidMount() {
+        axios.get("https://jsonplaceholder.typicode.com/users/2")
+            .then(response => {
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     render() {
         return (

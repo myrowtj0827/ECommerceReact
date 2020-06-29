@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6dfc4be5-ef3c-4857-af47-20e3a0eb92a1" name="Default Changelist" comment="" />
+    <list default="true" id="6dfc4be5-ef3c-4857-af47-20e3a0eb92a1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/config/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/actions/filter/filter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/actions/types/types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/reducers/filterReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/reducers/rootReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/storeConfig/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/home/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/home/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search/searchFilter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/searchFilter.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +52,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -90,7 +106,21 @@
       <workItem from="1592187193668" duration="1167000" />
       <workItem from="1592189051239" duration="830000" />
       <workItem from="1592190408986" duration="75026000" />
-      <workItem from="1592393113620" duration="3939000" />
+      <workItem from="1592446490297" duration="6465000" />
+      <workItem from="1592506541456" duration="1274000" />
+      <workItem from="1592535789633" duration="3421000" />
+      <workItem from="1593011239476" duration="812000" />
+      <workItem from="1593071803515" duration="2222000" />
+      <workItem from="1593122228346" duration="1284000" />
+      <workItem from="1593141604207" duration="3548000" />
+      <workItem from="1593216310721" duration="599000" />
+      <workItem from="1593229336961" duration="2479000" />
+      <workItem from="1593242896789" duration="8582000" />
+      <workItem from="1593283866479" duration="633000" />
+      <workItem from="1593303072306" duration="951000" />
+      <workItem from="1593313864711" duration="3036000" />
+      <workItem from="1593326523866" duration="16354000" />
+      <workItem from="1593388096853" duration="7910000" />
     </task>
     <servers />
   </component>
@@ -98,28 +128,22 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2492" y="238" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1592446945796">
+      <screen x="1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="2492" y="238" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1592446945796" />
     <state x="645" y="276" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592178226916">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="645" y="276" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1592178226916" />
-    <state x="2585" y="339" width="607" height="526" key="find.popup" timestamp="1592344598019">
+    <state x="2585" y="339" width="607" height="526" key="find.popup" timestamp="1593395780850">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
-    <state x="665" y="339" width="607" height="526" key="find.popup/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1592178997458" />
-    <state x="2585" y="339" width="607" height="526" key="find.popup/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1592344598019" />
+    <state x="665" y="339" width="607" height="526" key="find.popup/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1593340247403" />
+    <state x="2585" y="339" width="607" height="526" key="find.popup/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1593395780850" />
     <state x="2454" y="268" key="run.anything.popup" timestamp="1592197587541">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2454" y="268" key="run.anything.popup/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1592197587541" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/search/searchFilter.js</url>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

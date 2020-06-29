@@ -1,0 +1,4 @@
+export const SET_CURRENT_PRODUCT = "SET_CURRENT_PRODUCT";
+export const MESSAGE_FORM_API = "MESSAGE_FORM_API";
+export const USER_LOADING = "USER_LOADING";
+export const PRODUCT_ALL = "PRODUCT_ALL";
