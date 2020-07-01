@@ -20,13 +20,13 @@ class App extends React.Component {
     //     }
     // };
     componentDidMount() {
-        axios.get("https://jsonplaceholder.typicode.com/users/2")
-            .then(response => {
-                console.log(response.data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        // axios.get("https://jsonplaceholder.typicode.com/users/2")
+        //     .then(response => {
+        //         console.log(response.data)
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
     }
 
     render() {

@@ -7,10 +7,12 @@ router.post("/register-product", async (req, res) => {
 
     const newProduct = new Filter({
         product_id: req.body.product_id,
+        product_photo: req.body.product_photo,
         product_category: req.body.product_category,
         product_name: req.body.product_name,
         product_price: req.body.product_price,
         product_description: req.body.product_description,
+        product_photo_url: req.body.product_photo_url,
         product_store_address: req.body.product_store_address,
     });
 

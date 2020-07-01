@@ -11,7 +11,12 @@ class SearchFilter extends React.Component {
 
     render() {
 
-        alert()
+        const category = localStorage.getItem('category');
+
+        alert(category);
+
+
+
         return (
             <>
                 <div className="search-page">

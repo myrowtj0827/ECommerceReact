@@ -5,6 +5,11 @@ const Schema = mongoose.Schema;
  * Brand schema
  */
 const FilterSchema = new Schema({
+    product_photo: {
+        type: String,
+        required: true,
+    },
+
     product_id: {
         type: String,
         required: true,
