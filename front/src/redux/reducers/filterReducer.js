@@ -1,6 +1,7 @@
 import {
     PRODUCT_ALL,
-    SET_CURRENT_PRODUCT
+    SET_CURRENT_PRODUCT,
+    SET_SORT_PRODUCT
 } from "../actions/types/types"
 
 const initialState = {
@@ -19,6 +20,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 productList: action.payload
+            };
+        case SET_SORT_PRODUCT:
+            return {
+                ...state,
+                productSortList: action.payload
             };
         default:
             return state;

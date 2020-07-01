@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {connect} from "react-redux";
-import {createProduct, fetchAllProducts, filterProduct} from "../redux/actions/filter/filter";
+import { connect } from "react-redux";
+import { createProduct, fetchAllProducts } from "../redux/actions/filter/filter";
 
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
@@ -21,7 +21,7 @@ class Home extends React.Component {
             product_name: '',
             product_price: '',
             product_description: '',
-            product_photo_url: '',
+            product_store_logo: '',
             product_store_address: ''
         }
     };
@@ -78,7 +78,6 @@ class Home extends React.Component {
         })
     };
 
-
     componentDidMount() {
         const {
             fetchAllProducts,
@@ -102,7 +101,7 @@ class Home extends React.Component {
         const {
             fetchAllProducts
         } = this.props;
-        // console.log(this.props.productList[23].product_photo);
+
         fetchAllProducts(this.state);
 
     };
@@ -247,7 +246,6 @@ class Home extends React.Component {
                     </div>
                 </section>
 
-
                 <section className="logo-search min-width">
                     <img className="logo-size" src={require('../assets/images/E-Commerce-Software-logo.png')} alt="" />
 
@@ -258,13 +256,11 @@ class Home extends React.Component {
                                required />
                     </div>
 
-
                     <div className="w3-row w3-center">
 
                         <div className="w3-row" style={{paddingTop: '40px'}}>
                             <div className="w3-col l4">
                                 <img src={imgShow} />
-
                             </div>
 
                             <div className="w3-col l8">
@@ -309,8 +305,6 @@ class Home extends React.Component {
                     </div>
 
                 </section>
-
-
 
                 <section className="featured-products min-width">
                     <div className="w3-row products-title">
@@ -514,77 +508,40 @@ class Home extends React.Component {
                     <div className="w3-row w3-right see-all show-more"><a>See All</a></div>
                 </section>
 
-
-
-                
                 <section className="most-popular-product min-width">
                     <div className="w3-row products-title">
                         Most Popular Products
                     </div>
 
                     <div className="flex-card">
-                        <div className="w3-card card-bg-padding">
-                            <img className="img-item" src={require('../assets/images/products/51589POT.png')} alt="" />
-                            <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                            <div className="red-txt">$2.49</div>
-                        </div>
-
-                        <div className="w3-card card-bg-padding">
-                            <img className="img-item" src={require('../assets/images/products/81430PAK.png')} alt="" />
-                            <div className="blue-txt">'La Place Girasoli Tomaat Mozzarella 250g</div>
-                            <div className="red-txt">$2.99</div>
-                        </div>
-
-                        <div className="w3-card card-bg-padding">
-                            <img className="img-item" src={require('../assets/images/products/94151POT.png')} alt="" />
-                            <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                            <div className="red-txt">$2.99</div>
-                        </div>
-
-                        <div className="w3-card card-bg-padding">
-                            <img className="img-item" src={require('../assets/images/products/134051DS.png')} alt="" />
-                            <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                            <div className="red-txt">$2.03</div>
-                        </div>
-
-                        <div className="w3-card card-bg-padding">
-                            <img className="img-item" src={require('../assets/images/products/134890FLS.png')} alt="" />
-                            <div className="blue-txt">'Aviko SuperCrunch Originals Franse Friet 750g</div>
-                            <div className="red-txt">$1.99</div>
-                        </div>
-
-                        <div className="w3-card card-bg-padding">
-                            <img className="img-item" src={require('../assets/images/products/145330PAK.png')} alt="" />
-                            <div className="blue-txt">'Conimex Noodles Wok 248g</div>
-                            <div className="red-txt">$1.24</div>
-                        </div>
-
-                        <div className="w3-card card-bg-padding">
-                            <img className="img-item" src={require('../assets/images/products/163074STK.png')} alt="" />
-                            <div className="blue-txt">'Aviko SuperCrunch Airfryer Dunne Friet 750g</div>
-                            <div className="red-txt">$2.08</div>
-                        </div>
-
-                        <div className="w3-card card-bg-padding">
-                            <img className="img-item" src={require('../assets/images/products/166882FLS.png')} alt="" />
-                            <div className="blue-txt">'Tafelaardappelen Kruimig Voordeel Verpakking 5kg</div>
-                            <div className="red-txt">$3.69</div>
-                        </div>
+                        {
+                            productList && productList.map((item, key) => {
+                                if (key < 8) {
+                                    return (
+                                        <div className="w3-card card-bg-padding">
+                                            <a href={item.product_store_address}><img className="img-item" key={key} src={item.product_photo}/></a>
+                                            <div className="blue-txt">{item.product_description}</div>
+                                            <div className="red-txt">${item.product_price}</div>
+                                        </div>
+                                    )
+                                }
+                            })
+                        }
                     </div>
 
                     <span id="productsSeeAll" className="w3-row collapse">
                         <div className="flex-card">
                         {
                             productList && productList.map((item, key) => {
-                                console.log(item);
-                                return (
-                                    <div className="w3-card card-bg-padding">
-                                        <a href={item.product_store_address}><img className="img-item" key={key} src={item.product_photo}/></a>
-
-                                        <div className="blue-txt">{item.product_description}</div>
-                                        <div className="red-txt">${item.product_price}</div>
-                                    </div>
-                                )
+                                if (key >= 8) {
+                                    return (
+                                        <div className="w3-card card-bg-padding">
+                                            <a href={item.product_store_address}><img className="img-item" key={key} src={item.product_photo}/></a>
+                                            <div className="blue-txt">{item.product_description}</div>
+                                            <div className="red-txt">${item.product_price}</div>
+                                        </div>
+                                    )
+                                }
                             })
                         }
                         </div>

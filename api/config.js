@@ -19,7 +19,7 @@ module.exports = {
 	/**
 	 * This setting is used only for the content of the mails with link to ... (in forgot-password)
 	 */
-	
+
 	FRONT_URL: "http://localhost:3000",
 	// FRONT_URL: "http://198.12.254.183",
 
@@ -31,5 +31,4 @@ module.exports = {
 	// MAIL_SG_API: process.env.SEND_GRID_API_KEY,
 	MAIL_SENDER: "addison56@ethereal.email",
 	// MAIL_SENDER: process.env.MAIL_SENDER_ADDRESS,
-
 };

@@ -31,7 +31,7 @@ const FilterSchema = new Schema({
     },
 
     product_price: {
-        type: String,
+        type: Number,
         required: true,
     },
 

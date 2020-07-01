@@ -5,11 +5,9 @@ import {
     SET_CURRENT_PRODUCT,
     MESSAGE_FORM_API,
     USER_LOADING,
-    PRODUCT_ALL
+    PRODUCT_ALL,
+    SET_SORT_PRODUCT
 } from "../types/types";
-
-
-
 
 export const createProduct = (productData, history) => dispatch => {
     axios
@@ -27,15 +25,10 @@ export const createProduct = (productData, history) => dispatch => {
         })
 };
 
-
-
-
 export const fetchAllProducts = () => dispatch => {
     axios
         .get(config.SIM_API_URL + "api/filters/get-product-all")
         .then(res => {
-            console.log('@@@@@@@@@@@##########', res.data);
-
             dispatch({
                 type: PRODUCT_ALL,
                 payload: res.data.results,
@@ -55,29 +48,21 @@ export const fetchAllProducts = () => dispatch => {
         })
 };
 
-
-
-
-
-export const filterProduct = (productData, history) => dispatch => {
+export const SortProduct = (category, history) => dispatch => {
     axios
-        .post(config.SIM_API_URL + "api/filters/get-product-id", {product_id: productData.id})
+        .post(config.SIM_API_URL + "api/filters/get-product-sort", {category})
         .then(res => {
             dispatch({
-                type: SET_CURRENT_PRODUCT,
-                payload: true,
+                type: SET_SORT_PRODUCT,
+                payload: res.data.results,
             });
 
-            history.push("/");
         })
         .catch(err => {
+            alert('fail-category');
             dispatch({
                 type: MESSAGE_FORM_API,
                 payload: err.response ? err.response.data : {error: "error"}
             });
-            dispatch({
-                type: USER_LOADING,
-                payload: false,
-            })
         })
 };

@@ -31,12 +31,14 @@ router.get("/get-product-all", (req, res) => {
     });
 });
 
-router.get("/get-product-id", (req, res) => {
-    Filter.findOne({_id: req.product_id}).then(product => {
-        if(product){
-            return res.status(200).json({...product});
-        }
+router.post("/get-product-sort", (req, res) => {
+    Filter.find({
+        product_category: req.body.category,
+    }).collation( { locale: 'en', strength: 2 } ).sort({product_price: 1}).then(productSortList => {
 
+        if(productSortList){
+            return res.status(200).json({results: [...productSortList]});
+        }
         else{
             return res.status(400).json({msg: "The products can not find"});
         }

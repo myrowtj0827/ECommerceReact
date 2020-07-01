@@ -1,8 +1,25 @@
 import React from 'react';
+import {connect} from "react-redux";
+import { fetchAllProducts, SortProduct } from "../redux/actions/filter/filter";
+
+import storeLogo1 from "../assets/images/logo-icon1.png";
+import storeLogo2 from "../assets/images/logo-icon2.svg";
+import storeLogo3 from "../assets/images/logo-icon3.svg";
 
 class SearchFilter extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        const {
+            SortProduct,
+            productSorList
+        } = this.props;
+
+        if (SortProduct) {
+            SortProduct( localStorage.getItem('category'));
+        }
     }
 
     gotoShop = (code) => {
@@ -11,11 +28,30 @@ class SearchFilter extends React.Component {
 
     render() {
 
+        const {
+            productSortList,
+        } = this.props;
+
         const category = localStorage.getItem('category');
 
-        alert(category);
-
-
+        const logoArray = {
+            'https://www.noon.com/saudi-en/': storeLogo3,
+            'https://blackbox.com.sa': storeLogo2,
+            'https://www.amazon.sa': storeLogo1,
+            'https://www.extra.com/ar-sa': storeLogo3,
+            'https://www.samma3a.com/saudi-en/': storeLogo1,
+            'https://www.bukhamsen.com': storeLogo2,
+            'https://www.alsomah.com.sa': storeLogo3,
+            'https://redsea.com/en/': storeLogo3,
+            'https://www.mystore.com.sa/ar': storeLogo1,
+            'https://www.virginmegastore.sa/en/': storeLogo2,
+            'https://www.jarir.com/sa-en/': storeLogo3,
+            'https://www.electrostores.com/site/': storeLogo1,
+            'https://swsg.co/ar/': storeLogo2,
+            'https://www.xcite.com.sa/ar/': storeLogo3,
+            'https://www.ubuy.com.sa/ar/': storeLogo1,
+            'https://www.lowimart.com': storeLogo2
+        };
 
         return (
             <>
@@ -75,161 +111,42 @@ class SearchFilter extends React.Component {
                     <div className="best-product">
                         <div className="products-title">Best Match</div>
                         <div className="flex-card-most">
-                            <div className="w3-card best-match">
-                                <div className="w3-row justify-filter-content">
-                                    <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/51589POT.png")} alt="" />
-                                    </div>
+                            {
+                                productSortList && productSortList.map((item, key) => {
+                                    if (item.product_category.toLowerCase() === category.toLowerCase()) {
+                                        return (
+                                            <div>
+                                                <div className="w3-card best-match" key={key}>
+                                                    <div className="w3-row justify-filter-content">
+                                                        <div className="w3-col img-width">
+                                                            <a href={item.product_store_address}><img className="products-image" src={item.product_photo}/></a>
+                                                        </div>
 
-                                    <div className="w3-col name-width">
-                                        <div className="product-name">'Aardappel, rijst, pasta</div>
-                                        <div className="w3-row justify-filter-content">
-                                            <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.png")} alt="" />
+                                                        <div className="w3-col name-width">
+                                                            <div className="product-name">{item.product_name}  + {key}</div>
+                                                            <div className="w3-row justify-filter-content">
+                                                                <div className="w3-col l3 m2 s2">
+                                                                    <img className="store-logo-icon" src={logoArray[item.product_store_address]} alt="" />
+                                                                </div>
+                                                                <div className="w3-col l9 m10 s10 description-product">{item.product_description}</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="w3-col price-width">
+                                                            <div className="product-price">${item.product_price}</div>
+                                                        </div>
+
+                                                        <div className="w3-col shop-width">
+                                                            <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                        </div>
-                                    </div>
+                                        )
+                                    }
+                                })
+                            }
 
-                                    <div className="w3-col price-width">
-                                        <div className="product-price">$22.55</div>
-                                    </div>
-
-                                    <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="w3-card best-match">
-                                <div className="w3-row justify-filter-content">
-                                    <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/94151POT.png")} alt="" />
-                                    </div>
-
-                                    <div className="w3-col name-width">
-                                        <div className="product-name">'Aardappel, rijst, pasta</div>
-                                        <div className="w3-row justify-filter-content">
-                                            <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.svg")} alt="" />
-                                            </div>
-                                            <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w3-col price-width">
-                                        <div className="product-price">$22.55</div>
-                                    </div>
-
-                                    <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="w3-card best-match">
-                                <div className="w3-row justify-filter-content">
-                                    <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/134051DS.png")} alt="" />
-                                    </div>
-
-                                    <div className="w3-col name-width">
-                                        <div className="product-name">'Aardappel, rijst, pasta</div>
-                                        <div className="w3-row justify-filter-content">
-                                            <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon2.svg")} alt="" />
-                                            </div>
-                                            <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w3-col price-width">
-                                        <div className="product-price">$22.55</div>
-                                    </div>
-
-                                    <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="w3-card best-match">
-                                <div className="w3-row justify-filter-content">
-                                    <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/145330PAK.png")} alt="" />
-                                    </div>
-
-                                    <div className="w3-col name-width">
-                                        <div className="product-name">'Aardappel, rijst, pasta</div>
-                                        <div className="w3-row justify-filter-content">
-                                            <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.png")} alt="" />
-                                            </div>
-                                            <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w3-col price-width">
-                                        <div className="product-price">$22.55</div>
-                                    </div>
-
-                                    <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="w3-card best-match">
-                                <div className="w3-row justify-filter-content">
-                                    <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/163074STK.png")} alt="" />
-                                    </div>
-
-                                    <div className="w3-col name-width">
-                                        <div className="product-name">'Aardappel, rijst, pasta</div>
-                                        <div className="w3-row justify-filter-content">
-                                            <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon1.svg")} alt="" />
-                                            </div>
-                                            <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w3-col price-width">
-                                        <div className="product-price">$22.55</div>
-                                    </div>
-
-                                    <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="w3-card best-match">
-                                <div className="w3-row justify-filter-content">
-                                    <div className="w3-col img-width">
-                                        <img className="products-image" src={require("../assets/images/products/171448POT.png")} alt="" />
-                                    </div>
-
-                                    <div className="w3-col name-width">
-                                        <div className="product-name">'Aardappel, rijst, pasta</div>
-                                        <div className="w3-row justify-filter-content">
-                                            <div className="w3-col l3 m2 s2">
-                                                <img className="store-logo-icon" src={require("../assets/images/logo-icon2.svg")} alt="" />
-                                            </div>
-                                            <div className="w3-col l9 m10 s10 description-product">'Smaakt Bio Soba Noedels 250g. 'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w3-col price-width">
-                                        <div className="product-price">$22.55</div>
-                                    </div>
-
-                                    <div className="w3-col shop-width">
-                                        <div onClick={this.gotoShop}><span className="link-shop">Go to Shop</span><img className="goToShop" src={require("../assets/images/next.png")} alt="" /></div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div className="next-prev-btn">
@@ -252,4 +169,18 @@ class SearchFilter extends React.Component {
     }
 }
 
-export default SearchFilter;
+const mapStateToProps = (state) => {
+    return {
+        productSortList: state.filter.productSortList,
+    }
+};
+
+export default connect(
+    mapStateToProps,
+    {
+        fetchAllProducts,
+        SortProduct
+    }
+)(SearchFilter);
+
+// export default SearchFilter;
