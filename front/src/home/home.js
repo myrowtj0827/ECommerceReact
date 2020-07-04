@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { createProduct, fetchAllProducts } from "../redux/actions/filter/filter";
 
+import $ from 'jquery';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-
 import no_img from "../assets/images/noImage.png";
+
+
 class Home extends React.Component {
 
     constructor(props) {
@@ -87,6 +89,10 @@ class Home extends React.Component {
         if (fetchAllProducts) {
             fetchAllProducts();
         }
+
+        $("button").click(function () {
+            $.getAttribute();
+        })
     }
 
     registerData = () => {
@@ -114,7 +120,11 @@ class Home extends React.Component {
         }
     };
 
+
+
     render() {
+
+
 
         const {
             product_photo,

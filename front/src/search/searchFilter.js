@@ -123,7 +123,7 @@ class SearchFilter extends React.Component {
                                                         </div>
 
                                                         <div className="w3-col name-width">
-                                                            <div className="product-name">{item.product_name}  + {key}</div>
+                                                            <div className="product-name">{item.product_name}</div>
                                                             <div className="w3-row justify-filter-content">
                                                                 <div className="w3-col l3 m2 s2">
                                                                     <img className="store-logo-icon" src={logoArray[item.product_store_address]} alt="" />

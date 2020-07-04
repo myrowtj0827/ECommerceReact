@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const Filter = require("../models/Filter");
 
+
+const request = require('request');
+const cheerio = require('cheerio');
+const fs = require('fs');
+
 router.post("/register-product", async (req, res) => {
     console.log(req.body);
 
@@ -23,6 +28,22 @@ router.post("/register-product", async (req, res) => {
 router.get("/get-product-all", (req, res) => {
     Filter.find({}).then(productList => {
         if(productList){
+            request("https://news.ycombinator.com/news", function(error, response, body) {
+                if(error) {
+                    console.log("Error: " + error);
+                }
+                console.log("Status code: " + response.statusCode);
+
+                let $ = cheerio.load(body);
+
+                $('tr.athing:has(td.votelinks)').each(function( index ) {
+                    let title = $(this).find('td.title > a').text().trim();
+                    let link = $(this).find('td.title > a').attr('href');
+                    fs.appendFileSync('hackernews.txt', title + '\n' + link + '\n');
+                });
+
+            });
+
             return res.status(200).json({results: [...productList]});
         }
         else{
