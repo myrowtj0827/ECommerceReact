@@ -1,120 +1,66 @@
-Where Am I? NYTimes or Google?
-https://theinternetbytes.com/2020/07/03/where-am-i/
-A look at the Gemini protocol: a brutally simple alternative to the web
-https://toffelblog.xyz/blog/gemini-overview/
-Sphere Eversion
-https://rreusser.github.io/explorations/sphere-eversion/
-2+1=4, by quinoa
-https://www.efavdb.com/quinoa%20packing
-Bitcoin From Scratch – Part 1
-https://monokh.com/posts/bitcoin-from-scratch-part-1
-Photo Requests from Solitary
-http://photorequestsfromsolitary.org/
-Closos: Specification of a Lisp operating system (2013) [pdf]
-http://metamodular.com/closos.pdf
-LIGO Black hole merger may have optical confirmation
-https://www.caltech.edu/about/news/black-hole-collision-may-have-exploded-light
-Differential privacy tools from MS Research and Harvard
-https://blogs.microsoft.com/on-the-issues/2020/06/24/differential-privacy-harvard-opendp/
-The Walkman, Forty Years On
-https://www.newyorker.com/culture/cultural-comment/the-walkman-forty-years-on
-Cronk: Long-lost beverage resurrected after 120 years
-https://www.theguardian.com/world/2020/jul/03/dr-cronk-drink-canada-brewery
-Scaling Linux Services: Before accepting connections
-https://theojulienne.io/2020/07/03/scaling-linux-services-before-accepting-connections.html
-The Silence Is Deafening
-https://devonzuegel.com/post/the-silence-is-deafening
-QuickBasic64: Basic for the Modern Era
-https://www.qb64.org/portal/
-Queues are Databases (1995)
-https://arxiv.org/abs/cs/0701158
-Invention of satanic witchcraft by medieval authorities was met with skepticism
-https://theconversation.com/the-invention-of-satanic-witchcraft-by-medieval-authorities-was-initially-met-with-skepticism-140809
-Why do electron shells have set limits? (1999)
-http://www.madsci.org/posts/archives/1999-03/921736624.Ch.r.html
-Building a BASIC Interpreter, '80s style
-https://able.bio/kerrishotts/building-a-basic-interpreter-80s-style--79a9d703
-Neural Supersampling for Real-Time Rendering
-https://research.fb.com/blog/2020/07/introducing-neural-supersampling-for-real-time-rendering/
-Students built a 16th-century engineer’s book-reading machine
-https://www.atlasobscura.com/articles/behold-the-renaissance-bookwheel
-Colleges are reopening in fall, but many professors won’t be present
-https://www.nytimes.com/2020/07/03/us/coronavirus-college-professors.html
-Ask HN: Good Resources on Voice Encryption?
-item?id=23712006
-TaBERT: A new model for understanding queries over tabular data
-https://ai.facebook.com/blog/tabert-a-new-model-for-understanding-queries-over-tabular-data/
-Moon's Mark Down (2016)
-http://users.rcn.com/david-moon/MMD/HTML/index.html
-RenderMan and Funko Games
-https://renderman.pixar.com/stories/renderman-and-funko-games
-Zettlr – FOSS markdown editor for personal knowledge management and publishing
-https://www.zettlr.com/
-Nicholas Carr on deep reading and digital thinking
-https://www.vox.com/podcasts/2020/7/1/21308153/the-ezra-klein-show-the-shallows-twitter-facebook-attention-deep-reading-thinking
-Show HN: WebAssembly System Interface for Deno has been merged into Deno
-https://deno.land/std/wasi/README.md
-A Group Is Its Own Worst Enemy (2003) [pdf]
-https://www.gwern.net/docs/technology/2005-shirky-agroupisitsownworstenemy.pdf
-Crab Command and Control
-https://www.hakaimagazine.com/news/crab-command-and-control/
-Where Am I? NYTimes or Google?
-https://theinternetbytes.com/2020/07/03/where-am-i/
-A look at the Gemini protocol: a brutally simple alternative to the web
-https://toffelblog.xyz/blog/gemini-overview/
-Sphere Eversion
-https://rreusser.github.io/explorations/sphere-eversion/
-2+1=4, by quinoa
-https://www.efavdb.com/quinoa%20packing
-Bitcoin From Scratch – Part 1
-https://monokh.com/posts/bitcoin-from-scratch-part-1
-Photo Requests from Solitary
-http://photorequestsfromsolitary.org/
-Closos: Specification of a Lisp operating system (2013) [pdf]
-http://metamodular.com/closos.pdf
-LIGO Black hole merger may have optical confirmation
-https://www.caltech.edu/about/news/black-hole-collision-may-have-exploded-light
-Differential privacy tools from MS Research and Harvard
-https://blogs.microsoft.com/on-the-issues/2020/06/24/differential-privacy-harvard-opendp/
-The Walkman, Forty Years On
-https://www.newyorker.com/culture/cultural-comment/the-walkman-forty-years-on
-Cronk: Long-lost beverage resurrected after 120 years
-https://www.theguardian.com/world/2020/jul/03/dr-cronk-drink-canada-brewery
-Scaling Linux Services: Before accepting connections
-https://theojulienne.io/2020/07/03/scaling-linux-services-before-accepting-connections.html
-The Silence Is Deafening
-https://devonzuegel.com/post/the-silence-is-deafening
-QuickBasic64: Basic for the Modern Era
-https://www.qb64.org/portal/
-Queues are Databases (1995)
-https://arxiv.org/abs/cs/0701158
-Invention of satanic witchcraft by medieval authorities was met with skepticism
-https://theconversation.com/the-invention-of-satanic-witchcraft-by-medieval-authorities-was-initially-met-with-skepticism-140809
-Why do electron shells have set limits? (1999)
-http://www.madsci.org/posts/archives/1999-03/921736624.Ch.r.html
-Building a BASIC Interpreter, '80s style
-https://able.bio/kerrishotts/building-a-basic-interpreter-80s-style--79a9d703
-Neural Supersampling for Real-Time Rendering
-https://research.fb.com/blog/2020/07/introducing-neural-supersampling-for-real-time-rendering/
-Students built a 16th-century engineer’s book-reading machine
-https://www.atlasobscura.com/articles/behold-the-renaissance-bookwheel
-Colleges are reopening in fall, but many professors won’t be present
-https://www.nytimes.com/2020/07/03/us/coronavirus-college-professors.html
-Ask HN: Good Resources on Voice Encryption?
-item?id=23712006
-TaBERT: A new model for understanding queries over tabular data
-https://ai.facebook.com/blog/tabert-a-new-model-for-understanding-queries-over-tabular-data/
-Moon's Mark Down (2016)
-http://users.rcn.com/david-moon/MMD/HTML/index.html
-RenderMan and Funko Games
-https://renderman.pixar.com/stories/renderman-and-funko-games
-Zettlr – FOSS markdown editor for personal knowledge management and publishing
-https://www.zettlr.com/
-Nicholas Carr on deep reading and digital thinking
-https://www.vox.com/podcasts/2020/7/1/21308153/the-ezra-klein-show-the-shallows-twitter-facebook-attention-deep-reading-thinking
-Show HN: WebAssembly System Interface for Deno has been merged into Deno
-https://deno.land/std/wasi/README.md
-A Group Is Its Own Worst Enemy (2003) [pdf]
-https://www.gwern.net/docs/technology/2005-shirky-agroupisitsownworstenemy.pdf
-Crab Command and Control
-https://www.hakaimagazine.com/news/crab-command-and-control/
+Websites that look like desktop GUIs
+https://simone.computer/#/webdesktops
+Websites that look like desktop GUIs
+https://simone.computer/#/webdesktops
+1. (simone.computer)
+https://simone.computer/#/webdesktops
+1. (simone.computer)
+https://simone.computer/#/webdesktops
+2. (gizmodo.com)
+https://gizmodo.com/a-viral-new-bird-song-in-canada-is-causing-sparrows-t-1844245103
+3. (nickpunt.com)
+https://nickpunt.com/blog/deescalating-social-media/
+4. (jesseduffield.com)
+https://jesseduffield.com/beginners-guide-to-abstraction/
+5. (w3.org)
+https://www.w3.org/Style/2011/CSS-process.en.html
+6. (spritesmods.com)
+http://spritesmods.com/?art=hddhack&page=1
+7. (ulisp.com)
+http://www.ulisp.com/show?2L0C
+8. (theregister.com)
+https://www.theregister.com/2020/07/03/analogue_commercial_radio_licences_extended_10_years/
+9. (github.com)
+https://github.com/naver/tamgu/wiki/tamgucalc-(en)
+10. (popehat.com)
+https://www.popehat.com/2020/07/04/the-fourth-of-july-rerun/
+11. (twitter.com)
+https://twitter.com/RocketLab/status/1279531664759091200
+12. (tinc-vpn.org)
+http://tinc-vpn.org/
+13. (nott.ac.uk)
+http://www.cs.nott.ac.uk/~pszgmh/popl.pdf
+14. (nature.com)
+https://www.nature.com/articles/475166a
+15. (nautil.us)
+http://nautil.us/issue/86/energy/the-glassmaker-who-sparked-astrophysics-rp
+16. (utexas.edu)
+https://www.cs.utexas.edu/users/EWD/transcriptions/EWD10xx/EWD1094.html
+17. (webdesignmuseum.org)
+https://www.webdesignmuseum.org/
+18. (reddit.com)
+https://old.reddit.com/r/Onyx_Boox/comments/hk7d5v/onyx_is_violating_the_linux_kernels_license/
+19. (millionneighborhoods.org)
+https://millionneighborhoods.org/#2/8.84/17.54
+20. (axial.substack.com)
+https://axial.substack.com/p/axial-founder-driven-life-sciences
+21. (higashi.tech)
+http://blog.higashi.tech/2020/06/16/fhe_01.html
+22. (newyorker.com)
+https://www.newyorker.com/magazine/2020/07/06/the-rabbit-outbreak
+23. (popularmechanics.com)
+https://www.popularmechanics.com/technology/gadgets/a8937/our-intellectual-property-laws-are-out-of-control-15467970/
+24. (yale.edu)
+https://avalon.law.yale.edu/19th_century/lincoln1.asp
+25. (loki3.com)
+http://loki3.com/flex/explore/
+26. (bennettfeely.com)
+https://bennettfeely.com/usacss/
+27. (st-andrews.ac.uk)
+https://mathshistory.st-andrews.ac.uk/Extras/Keynes_Newton/
+28. (roughtype.com)
+http://www.roughtype.com/?p=8724
+29. (bbc.com)
+https://www.bbc.com/news/stories-53267505
+30. (economist.com)
+https://www.economist.com/science-and-technology/2020/07/04/after-many-false-starts-hydrogen-power-might-now-bear-fruit
