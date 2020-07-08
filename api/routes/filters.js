@@ -7,6 +7,7 @@ const request = require('request');
 const cheerio = require('cheerio');
 const fs = require('fs');
 let m = 0;
+
 router.post("/register-product", async (req, res) => {
     console.log(req.body);
 
@@ -28,20 +29,13 @@ router.post("/register-product", async (req, res) => {
 router.get("/get-product-all", (req, res) => {
     Filter.find({}).then(productList => {
         if(productList){
-            // request("https://news.ycombinator.com/news", function(error, response, body) {
-            //     if(error) {
-            //         console.log("Error: " + error);
-            //     }
-            //     console.log("Status code: " + response.statusCode);
-            //
-            //     let $ = cheerio.load(body);
-            //
-            //     $('tr.athing').each(function( index ) {
-            //         let title = $(this).find('td.title > span').text().trim();
-            //         let link = $(this).find('td.title > a').attr('href');
-            //         fs.appendFileSync('hackernews.txt', title + '\n' + link + '\n');
-            //     });
-            // });
+
+
+            /**
+             * /noon.com/saudi-en Scrapping
+             */            //         let title = $(this).find('td.title > span').text().trim();
+
+            let linkString, nCount = 0;
 
             request("https://www.noon.com/saudi-en/", function(error, response, body) {
                 if(error) {
@@ -50,22 +44,17 @@ router.get("/get-product-all", (req, res) => {
                 console.log("Status code: " + response.statusCode);
 
                 let $ = cheerio.load(body);
+                let mOrder = 0;
+                let linkArray = [];
 
-                $('div.jsx-1280509355 > a').each(function( index ) {
+                $('div.bannerContainer.bannerModule').each(function( index ) {
+                    linkArray[mOrder] = 'https://www.noon.com' + $(this).find('a').attr('href');
+                    fs.appendFileSync('saudi.txt', mOrder + ' -> ' + linkArray[mOrder] + '\n\n');
 
-                    let link = 'https://www.noon.com' + $(this).attr('href');
-                    // let imgInfo = $(this).find('div  a  div  div  div  img.jsx-1280509355').attr('src');
-
-                    let png = $(this).find('img').attr('src');
-                    m = $(this);
-
-                    fs.appendFileSync('saudi.txt', link + '\n\n');
+                    console.log(mOrder, ' -> ', linkArray);
+                    mOrder += 1;
                 });
             });
-
-
-
-            
 
             return res.status(200).json({results: [...productList]});
         }
