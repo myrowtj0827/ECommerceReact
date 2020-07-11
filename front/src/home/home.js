@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { createProduct, fetchAllProducts } from "../redux/actions/filter/filter";
 
+import { gettingLink } from "../redux/actions/filter/scrapingProduct";
+
 import $ from 'jquery';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
@@ -83,6 +85,7 @@ class Home extends React.Component {
     componentDidMount() {
         const {
             fetchAllProducts,
+            // gettingLink,
             productList
         } = this.props;
 
@@ -90,10 +93,22 @@ class Home extends React.Component {
             fetchAllProducts();
         }
 
+        // if (gettingLink) {
+        //     gettingLink();
+        // }
+
         $("button").click(function () {
             $.getAttribute();
         })
     }
+
+    scrapingData = () => {
+        const {
+            gettingLink
+        } = this.props;
+
+        gettingLink(this.state);
+    };
 
     registerData = () => {
         const {
@@ -121,10 +136,7 @@ class Home extends React.Component {
     };
 
 
-
     render() {
-
-
 
         const {
             product_photo,
@@ -266,8 +278,13 @@ class Home extends React.Component {
                                required />
                     </div>
 
-                    <div className="w3-row w3-center">
+                    <div className="w3-btn w3-yellow w3-hover-blue" onClick={this.scrapingData} style={{marginTop: '40px'}}>Scraping Start</div>
 
+                    <div className="w3-btn w3-blue w3-hover-yellow" data-toggle="collapse" data-target="#productsSeeAll" style={{marginTop: '40px'}}>Insert Image</div>
+
+
+                    <span id="productsSeeAll" className="w3-row collapse">
+                        <div className="w3-row w3-center">
                         <div className="w3-row" style={{paddingTop: '40px'}}>
                             <div className="w3-col l4">
                                 <img src={imgShow} />
@@ -313,7 +330,7 @@ class Home extends React.Component {
                             </div>
                         </div>
                     </div>
-
+                    </span>
                 </section>
 
                 <section className="featured-products min-width">
@@ -582,5 +599,6 @@ export default connect(
     {
         createProduct,
         fetchAllProducts,
+        gettingLink,
     }
 )(Home);

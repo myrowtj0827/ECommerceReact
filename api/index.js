@@ -7,6 +7,8 @@ const {MONGO_URL, FRONT_URL} = require("./config");
 const passport = require("passport");
 const auth = require("./routes/auth");
 const filters = require("./routes/filters");
+const scrapingProduct = require("./routes/scrapingProduct");
+
 // const profiles = require("./routes/profiles");
 // const contracts = require("./routes/contracts");
 // const stripepay = require("./routes/stripe-pay");
@@ -40,6 +42,8 @@ require("./utils/passport")(passport);
 
 app.use("/api/pub", auth);
 app.use("/api/filters", filters);
+app.use("/api/scrapingProduct", scrapingProduct);
+
 // app.use("/api/profile", profiles);
 // app.use("/api/contract", contracts);
 // app.use("/api/stripe", stripepay);

@@ -44,7 +44,8 @@
 		"redux-thunk": "^2.3.0",
 		"request": "^2.88.2",
 		"stripe": "^8.32.0",
-		"validator": "^12.2.0"
+		"validator": "^12.2.0",
+		"wait.for": "^0.6.6"
 	},
 	"devDependencies": {
 		"nodemon": "^2.0.2"

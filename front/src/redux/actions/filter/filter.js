@@ -27,7 +27,7 @@ export const createProduct = (productData, history) => dispatch => {
 
 export const fetchAllProducts = () => dispatch => {
     axios
-        .get(config.SIM_API_URL + "api/filters/get-product-all")
+        .get(config.SIM_API_URL + "api/filters/get-product-all", )
         .then(res => {
             dispatch({
                 type: PRODUCT_ALL,
