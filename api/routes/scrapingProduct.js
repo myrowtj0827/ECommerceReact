@@ -13,7 +13,7 @@ let goLink = [];
 let mLen, timeFlag;
 
 router.post("/scraping-product", async (req, res) => {
-    let baseUrl = "https://www.noon.com/saudi-en/solar-fuse-running-shoes/N35700744V/p?o=c72a94ca0a00ff3a";
+    let baseUrl = "https://www.noon.com/saudi-en/fashion/women-31229/shoes-16238/athletic-16239";
 
     let firstStr = "div.bannerContainer.bannerModule";
     let secondStr = "div.productContainer";
@@ -58,11 +58,49 @@ router.post("/scraping-product", async (req, res) => {
 
     let nCount_Products = goLink.length;
     await gettingScraping(nCount_First-1, nCount_Products);
-
-    //await fs.appendFileSync('scrapingLink.txt', goLink);
-
     console.log("nCount_First = ", nCount_First + "\t\t\t nCount_Products = ", nCount_Products + "Done !!!!!");
     return res.status(200).json(scraping_Product);
+});
+
+
+
+router.get("/scraping-product-all", async (req, res) => {
+    ScrapingProduct.find({}).then( scrapingList =>  {
+        if(scrapingList){
+
+            return res.status(200).json({results: [...scrapingList]});
+        }
+        else{
+            return res.status(400).json({msg: "The products can not find"});
+        }
+    });
+});
+
+router.post("/scraping-product-sort", (req, res) => {
+    let pStr = req.body.category;
+    let pSplit = pStr.split(' ');
+
+    let mLen = pSplit.length;
+    let reE = '^(?=.*\\b' + pSplit[0] + '\\b)';
+
+    for (let i = 1; i < mLen; i ++) {
+        reE += '(?=.*\\b' + pSplit[i] + '\\b)';
+    }
+
+    reE += '.*$';
+    let rew = new RegExp(reE);
+
+    ScrapingProduct.find({
+        scraping_category: {$regex: rew, $options: 'i/w'}
+    }).collation( { locale: 'en', strength: 2 } ).sort({scraping_price: 1}).then(scrapingSortList => {
+
+        if(scrapingSortList){
+            return res.status(200).json({results: [...scrapingSortList]});
+        }
+        else{
+            return res.status(400).json({msg: "The products can not find"});
+        }
+    });
 });
 
 module.exports = router;
@@ -76,10 +114,8 @@ module.exports = router;
  async function gettingFirstStageLink(pStr, scrappingUrl) {
     let mTime;
     try {
-
         const result = await axios.get(scrappingUrl);
         let $ = await cheerio.load(result.data);
-
         timeFlag = 0;
 
         await $(pStr).each( function( index ) {
@@ -144,33 +180,30 @@ async function gettingScraping(nFirst, nSecond) {
                 }
             });
 
-
             /**
              * Getting the details information
              */
-
             let sInfo = $("div.primaryDetails");
-            let photoLink = $(sInfo).find("div.mediaContainer > img").attr("src");
+
+            let photoLink = $(sInfo).find("div.mediaContainer > div > img").attr("src");
+            let thumbnailPhotoLink = $(sInfo).find("div.mediaContainer > img").attr("src");
             let productName = $(sInfo).find("div.coreWrapper > div > a").text().trim();
             let productDescription = $(sInfo).find("div.coreWrapper > div > h1").text().trim();
             let productPrice = $(sInfo).find("span.sellingPrice > span > span.value").text().trim();
 
-            console.log('photoLink = ', photoLink);
-            console.log('productName = ', productName);
-            console.log('productDescription = ', productDescription);
+
+            console.log("photoLink = ", photoLink);
+
 
             await ScrapingProduct.updateOne({scraping_id: (i+1).toString()},
-                {scraping_category: categoryList, scraping_name: productName, scraping_photo_link: photoLink, scraping_description: productDescription, scraping_price: productPrice});
-
-
-
+                {scraping_category: categoryList, scraping_name: productName, scraping_photo_link: photoLink,
+                    scraping_description: productDescription, scraping_price: productPrice, scraping_thumbnail_Link: thumbnailPhotoLink});
 
         } catch (error) {
             console.log('====', i, '   +++    ', error.response.statusText);
             i = i - 1;
         }
     }
-
 }
 
 

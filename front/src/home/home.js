@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { createProduct, fetchAllProducts } from "../redux/actions/filter/filter";
 
-import { gettingLink } from "../redux/actions/filter/scrapingProduct";
+import { gettingLink, scrapingAllProducts } from "../redux/actions/filter/scrapingProduct";
 
 import $ from 'jquery';
 import OwlCarousel from 'react-owl-carousel';
@@ -26,7 +26,16 @@ class Home extends React.Component {
             product_price: '',
             product_description: '',
             product_store_logo: '',
-            product_store_address: ''
+            product_store_address: '',
+
+            scraping_id: '',
+            scraping_store_address: '',
+            scraping_photo_link: '',
+            scraping_category: '',
+            scraping_name: '',
+            scraping_description: '',
+            scraping_price: '',
+
         }
     };
 
@@ -85,17 +94,18 @@ class Home extends React.Component {
     componentDidMount() {
         const {
             fetchAllProducts,
-            // gettingLink,
-            productList
+            scrapingAllProducts,
+            productList,
+            scrapingList,
         } = this.props;
 
         if (fetchAllProducts) {
             fetchAllProducts();
         }
 
-        // if (gettingLink) {
-        //     gettingLink();
-        // }
+        if (scrapingAllProducts) {
+            scrapingAllProducts();
+        }
 
         $("button").click(function () {
             $.getAttribute();
@@ -104,10 +114,12 @@ class Home extends React.Component {
 
     scrapingData = () => {
         const {
-            gettingLink
+            gettingLink,
+            scrapingAllProducts
         } = this.props;
 
         gettingLink(this.state);
+        scrapingAllProducts(this.state);
     };
 
     registerData = () => {
@@ -124,7 +136,6 @@ class Home extends React.Component {
         } = this.props;
 
         fetchAllProducts(this.state);
-
     };
 
     navigatePage = (code) => {
@@ -145,6 +156,11 @@ class Home extends React.Component {
         const {
             productList,
         } = this.props;
+
+        const {
+            scrapingList
+        } = this.props;
+
 
         const imgShow = product_photo ? product_photo : no_img;
         return (
@@ -280,10 +296,10 @@ class Home extends React.Component {
 
                     <div className="w3-btn w3-yellow w3-hover-blue" onClick={this.scrapingData} style={{marginTop: '40px'}}>Scraping Start</div>
 
-                    <div className="w3-btn w3-blue w3-hover-yellow" data-toggle="collapse" data-target="#productsSeeAll" style={{marginTop: '40px'}}>Insert Image</div>
+                    {/*<div className="w3-btn w3-blue w3-hover-yellow" data-toggle="collapse" data-target="#productsInsert" style={{marginTop: '40px'}}>Insert Image</div>*/}
 
 
-                    <span id="productsSeeAll" className="w3-row collapse">
+                    <span id="productsInsert" className="w3-row collapse">
                         <div className="w3-row w3-center">
                         <div className="w3-row" style={{paddingTop: '40px'}}>
                             <div className="w3-col l4">
@@ -542,13 +558,14 @@ class Home extends React.Component {
 
                     <div className="flex-card">
                         {
-                            productList && productList.map((item, key) => {
+                            scrapingList && scrapingList.map((item, key) => {
                                 if (key < 8) {
                                     return (
                                         <div className="w3-card card-bg-padding">
-                                            <a href={item.product_store_address}><img className="img-item" key={key} src={item.product_photo}/></a>
-                                            <div className="blue-txt">{item.product_description}</div>
-                                            <div className="red-txt">${item.product_price}</div>
+                                            <a href={item.scraping_store_address}><img className="img-item" key={key} src={item.scraping_photo_link}/></a>
+                                            <div className="scraping-name">{item.scraping_name}</div>
+                                            <div className="blue-txt">{item.scraping_description}</div>
+                                            <div className="red-txt">${item.scraping_price}</div>
                                         </div>
                                     )
                                 }
@@ -559,13 +576,14 @@ class Home extends React.Component {
                     <span id="productsSeeAll" className="w3-row collapse">
                         <div className="flex-card">
                         {
-                            productList && productList.map((item, key) => {
+                            scrapingList && scrapingList.map((item, key) => {
                                 if (key >= 8) {
                                     return (
                                         <div className="w3-card card-bg-padding">
-                                            <a href={item.product_store_address}><img className="img-item" key={key} src={item.product_photo}/></a>
-                                            <div className="blue-txt">{item.product_description}</div>
-                                            <div className="red-txt">${item.product_price}</div>
+                                            <a href={item.scraping_store_address}><img className="img-item" key={key} src={item.scraping_photo_link}/></a>
+                                            <div className="scraping-name">{item.scraping_name}</div>
+                                            <div className="blue-txt">{item.scraping_description}</div>
+                                            <div className="red-txt">${item.scraping_price}</div>
                                         </div>
                                     )
                                 }
@@ -591,6 +609,7 @@ class Home extends React.Component {
 const mapStateToProps = (state) => {
     return {
         productList: state.filter.productList,
+        scrapingList: state.scrapingProduct.scrapingList,
     }
 };
 
@@ -599,6 +618,7 @@ export default connect(
     {
         createProduct,
         fetchAllProducts,
+        scrapingAllProducts,
         gettingLink,
     }
 )(Home);

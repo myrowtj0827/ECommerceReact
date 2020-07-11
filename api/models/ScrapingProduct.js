@@ -38,6 +38,11 @@ const ScrapingSchema = new Schema({
     scraping_price: {
         type: Number,
         required: false,
+    },
+
+    scraping_thumbnail_Link : {
+        type: String,
+        required: false,
     }
 });
 

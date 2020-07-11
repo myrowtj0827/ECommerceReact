@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import { fetchAllProducts, SortProduct } from "../redux/actions/filter/filter";
+import { scrapingAllProducts, ScrapingSort } from "../redux/actions/filter/scrapingProduct"
 
 import storeLogo1 from "../assets/images/logo-icon1.png";
 import storeLogo2 from "../assets/images/logo-icon2.svg";
@@ -13,12 +14,16 @@ class SearchFilter extends React.Component {
 
     componentDidMount() {
         const {
-            SortProduct,
-            productSorList
+            //SortProduct,
+            ScrapingSort
         } = this.props;
 
-        if (SortProduct) {
-            SortProduct( localStorage.getItem('category'));
+        // if (SortProduct) {
+        //     SortProduct( localStorage.getItem('category'));
+        // }
+
+        if (ScrapingSort) {
+            ScrapingSort( localStorage.getItem('category'));
         }
     }
 
@@ -29,7 +34,8 @@ class SearchFilter extends React.Component {
     render() {
 
         const {
-            productSortList,
+            //productSortList,
+            scrapingSortList,
         } = this.props;
 
         const category = localStorage.getItem('category');
@@ -112,28 +118,28 @@ class SearchFilter extends React.Component {
                         <div className="products-title">Best Match</div>
                         <div className="flex-card-most">
                             {
-                                productSortList && productSortList.map((item, key) => {
-                                    if (item.product_category.toLowerCase() === category.toLowerCase()) {
+                                scrapingSortList && scrapingSortList.map((item, key) => {
+                                    // if (item.scraping_category.toLowerCase() === category.toLowerCase()) {
                                         return (
                                             <div>
                                                 <div className="w3-card best-match" key={key}>
                                                     <div className="w3-row justify-filter-content">
                                                         <div className="w3-col img-width">
-                                                            <a href={item.product_store_address}><img className="products-image" src={item.product_photo}/></a>
+                                                            <a href={item.scraping_store_address}><img className="products-image" src={item.scraping_photo_link}/></a>
                                                         </div>
 
                                                         <div className="w3-col name-width">
-                                                            <div className="product-name">{item.product_name}</div>
+                                                            <div className="product-name">{item.scraping_name}</div>
                                                             <div className="w3-row justify-filter-content">
                                                                 <div className="w3-col l3 m2 s2">
-                                                                    <img className="store-logo-icon" src={logoArray[item.product_store_address]} alt="" />
+                                                                    <img className="store-logo-icon" src={logoArray[item.scraping_store_address]} alt="" />
                                                                 </div>
-                                                                <div className="w3-col l9 m10 s10 description-product">{item.product_description}</div>
+                                                                <div className="w3-col l9 m10 s10 description-product">{item.scraping_description}</div>
                                                             </div>
                                                         </div>
 
                                                         <div className="w3-col price-width">
-                                                            <div className="product-price">${item.product_price}</div>
+                                                            <div className="product-price">${item.scraping_price}</div>
                                                         </div>
 
                                                         <div className="w3-col shop-width">
@@ -143,7 +149,7 @@ class SearchFilter extends React.Component {
                                                 </div>
                                             </div>
                                         )
-                                    }
+                                    // }
                                 })
                             }
 
@@ -172,6 +178,7 @@ class SearchFilter extends React.Component {
 const mapStateToProps = (state) => {
     return {
         productSortList: state.filter.productSortList,
+        scrapingSortList: state.scrapingProduct.scrapingSortList,
     }
 };
 
@@ -179,8 +186,8 @@ export default connect(
     mapStateToProps,
     {
         fetchAllProducts,
-        SortProduct
+        SortProduct,
+        scrapingAllProducts,
+        ScrapingSort,
     }
 )(SearchFilter);
-
-// export default SearchFilter;
