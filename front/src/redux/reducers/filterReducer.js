@@ -3,7 +3,9 @@ import {
     SET_CURRENT_PRODUCT,
     SET_SORT_PRODUCT,
     SCRAPING_FORM_API,
-    SCRAPING_PRODUCT_ALL, SET_SCRAPING_SORT_PRODUCT
+    SCRAPING_PRODUCT_ALL,
+    SET_SCRAPING_SORT_PRODUCT,
+    SET_SCRAPING_DELETE
 } from "../actions/types/types"
 
 const initialState = {
@@ -48,6 +50,12 @@ export default function (state = initialState, action) {
                 ...state,
                 scrapingSortList: action.payload
             };
+
+        // case SET_SCRAPING_DELETE:
+        //     return {
+        //         ...state,
+        //         scrapingList: action.payload
+        //     };
         default:
             return state;
     }

@@ -8,11 +8,12 @@ import {
     SCRAPING_USER_LOADING,
     SET_SCRAPING_SORT_PRODUCT,
     MESSAGE_FORM_API,
+    // SET_SCRAPING_DELETE
 } from "../types/types";
 
 export const gettingLink = () => dispatch => {
     axios
-        .post(config.SIM_API_URL + "api/scrapingProduct/scraping-product", )
+        .post(config.SIM_API_URL + "api/scrapingProduct/scraping-product")
         .then(res => {
             alert('success');
             console.log(res);
@@ -49,7 +50,6 @@ export const scrapingAllProducts = () => dispatch => {
         })
 };
 
-
 export const ScrapingSort = (category, history) => dispatch => {
     axios
         .post(config.SIM_API_URL + "api/scrapingProduct/scraping-product-sort", {category})
@@ -68,4 +68,24 @@ export const ScrapingSort = (category, history) => dispatch => {
             });
         })
 };
+
+// export const ScrapingDelete = () => dispatch => {
+//     axios
+//         .post(config.SIM_API_URL + "api/scrapingProduct/delete-product")
+//         .then(res => {
+//             console.log(res);
+//             dispatch({
+//                 type: SET_SCRAPING_DELETE,
+//                 payload: res.data.results,
+//             });
+//
+//         })
+//         .catch(err => {
+//             alert('fail-delete');
+//             dispatch({
+//                 type: MESSAGE_FORM_API,
+//                 payload: err.response ? err.response.data : {error: "error"}
+//             });
+//         })
+// };
 

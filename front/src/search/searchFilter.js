@@ -6,6 +6,7 @@ import { scrapingAllProducts, ScrapingSort } from "../redux/actions/filter/scrap
 import storeLogo1 from "../assets/images/logo-icon1.png";
 import storeLogo2 from "../assets/images/logo-icon2.svg";
 import storeLogo3 from "../assets/images/logo-icon3.svg";
+import storeLogoNoon from "../assets/images/noon_logo_black_english.svg";
 
 class SearchFilter extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class SearchFilter extends React.Component {
         const category = localStorage.getItem('category');
 
         const logoArray = {
-            'https://www.noon.com/saudi-en/': storeLogo3,
+            'https://www.noon.com/saudi-en/': storeLogoNoon,
             'https://blackbox.com.sa': storeLogo2,
             'https://www.amazon.sa': storeLogo1,
             'https://www.extra.com/ar-sa': storeLogo3,
@@ -139,7 +140,7 @@ class SearchFilter extends React.Component {
                                                         </div>
 
                                                         <div className="w3-col price-width">
-                                                            <div className="product-price">${item.scraping_price}</div>
+                                                            <div className="product-price">SAR {item.scraping_price}</div>
                                                         </div>
 
                                                         <div className="w3-col shop-width">

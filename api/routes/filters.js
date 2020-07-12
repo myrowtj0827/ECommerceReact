@@ -20,7 +20,6 @@ router.post("/register-product", async (req, res) => {
     return res.status(200).json(newProduct);
 });
 
-
 router.get("/get-product-all", async (req, res) => {
     Filter.find({}).then( productList =>  {
         if(productList){
@@ -31,7 +30,6 @@ router.get("/get-product-all", async (req, res) => {
             return res.status(400).json({msg: "The products can not find"});
         }
     });
-
 });
 
 router.post("/get-product-sort", (req, res) => {

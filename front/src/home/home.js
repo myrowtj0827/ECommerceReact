@@ -17,16 +17,16 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            imgStore: '',
+            // imgStore: '',
             categoryName: '',
-            product_id: '',
-            product_photo: '',
-            product_category: '',
-            product_name: '',
-            product_price: '',
-            product_description: '',
-            product_store_logo: '',
-            product_store_address: '',
+            // product_id: '',
+            // product_photo: '',
+            // product_category: '',
+            // product_name: '',
+            // product_price: '',
+            // product_description: '',
+            // product_store_logo: '',
+            // product_store_address: '',
 
             scraping_id: '',
             scraping_store_address: '',
@@ -39,64 +39,64 @@ class Home extends React.Component {
         }
     };
 
-    selectImage = (e) => {
-        const url = e.target.files[0];
-
-        if (url) {
-            const reader = new FileReader();
-            reader.onload = fileEvent => {
-                this.cropImage(fileEvent.target.result, 370)
-                    .then(croppedImg => {
-
-                        this.setState({
-                            product_photo: croppedImg,
-                        })
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    });
-            };
-            reader.readAsDataURL(url);
-        }
-    };
-
-    cropImage = (url, size, key) => {
-        return new Promise(resolve => {
-            // this image will hold our source image data
-            const inputImage = new Image();
-
-            // we want to wait for our image to load
-            inputImage.onload = () => {
-                // let's store the width and height of our image
-                const minLength = Math.min(inputImage.naturalWidth, inputImage.naturalHeight);
-
-                // calculate the position to draw the image at
-                const offsetX = (inputImage.naturalWidth - minLength) / 2;
-                const offsetY = (inputImage.naturalHeight - minLength) / 2;
-
-                // create a canvas that will present the output image
-                const outputImage = document.createElement('canvas');
-
-                // set it to the same size as the image
-                outputImage.width = size;
-                outputImage.height = size;
-
-                // draw our image at position 0, 0 on the canvas
-                const ctx = outputImage.getContext('2d');
-                ctx.drawImage(inputImage, offsetX, offsetY, minLength, minLength, 0, 0, size, size);
-                resolve(outputImage.toDataURL('image/png', 0.4));
-            };
-            // start cropping
-            inputImage.src = url;
-        })
-    };
+    // selectImage = (e) => {
+    //     const url = e.target.files[0];
+    //
+    //     if (url) {
+    //         const reader = new FileReader();
+    //         reader.onload = fileEvent => {
+    //             this.cropImage(fileEvent.target.result, 370)
+    //                 .then(croppedImg => {
+    //
+    //                     this.setState({
+    //                         product_photo: croppedImg,
+    //                     })
+    //                 })
+    //                 .catch(err => {
+    //                     console.log(err);
+    //                 });
+    //         };
+    //         reader.readAsDataURL(url);
+    //     }
+    // };
+    //
+    // cropImage = (url, size, key) => {
+    //     return new Promise(resolve => {
+    //         // this image will hold our source image data
+    //         const inputImage = new Image();
+    //
+    //         // we want to wait for our image to load
+    //         inputImage.onload = () => {
+    //             // let's store the width and height of our image
+    //             const minLength = Math.min(inputImage.naturalWidth, inputImage.naturalHeight);
+    //
+    //             // calculate the position to draw the image at
+    //             const offsetX = (inputImage.naturalWidth - minLength) / 2;
+    //             const offsetY = (inputImage.naturalHeight - minLength) / 2;
+    //
+    //             // create a canvas that will present the output image
+    //             const outputImage = document.createElement('canvas');
+    //
+    //             // set it to the same size as the image
+    //             outputImage.width = size;
+    //             outputImage.height = size;
+    //
+    //             // draw our image at position 0, 0 on the canvas
+    //             const ctx = outputImage.getContext('2d');
+    //             ctx.drawImage(inputImage, offsetX, offsetY, minLength, minLength, 0, 0, size, size);
+    //             resolve(outputImage.toDataURL('image/png', 0.4));
+    //         };
+    //         // start cropping
+    //         inputImage.src = url;
+    //     })
+    // };
 
     componentDidMount() {
         const {
             fetchAllProducts,
             scrapingAllProducts,
-            productList,
-            scrapingList,
+            // productList,
+            // scrapingList,
         } = this.props;
 
         if (fetchAllProducts) {
@@ -122,21 +122,32 @@ class Home extends React.Component {
         scrapingAllProducts(this.state);
     };
 
-    registerData = () => {
-        const {
-            createProduct
-        } = this.props;
+    // scrapingDelete = () => {
+    //     const {
+    //         gettingLink,
+    //         ScrapingDelete,
+    //         scrapingAllProducts
+    //     } = this.props;
+    //     gettingLink(this.state);
+    //     ScrapingDelete(this.state);
+    //     scrapingAllProducts(this.state);
+    // };
 
-        createProduct(this.state);
-    };
-
-    productAllShow = () => {
-        const {
-            fetchAllProducts
-        } = this.props;
-
-        fetchAllProducts(this.state);
-    };
+    // registerData = () => {
+    //     const {
+    //         createProduct
+    //     } = this.props;
+    //
+    //     createProduct(this.state);
+    // };
+    //
+    // productAllShow = () => {
+    //     const {
+    //         fetchAllProducts
+    //     } = this.props;
+    //
+    //     fetchAllProducts(this.state);
+    // };
 
     navigatePage = (code) => {
         if (code === 13) {
@@ -146,23 +157,22 @@ class Home extends React.Component {
         }
     };
 
-
     render() {
 
-        const {
-            product_photo,
-        } = this.state;
+        // const {
+        //     product_photo,
+        // } = this.state;
 
-        const {
-            productList,
-        } = this.props;
+        // const {
+        //     productList,
+        // } = this.props;
 
         const {
             scrapingList
         } = this.props;
 
 
-        const imgShow = product_photo ? product_photo : no_img;
+       // const imgShow = product_photo ? product_photo : no_img;
         return (
             <>
                 <section className="landing-header">
@@ -295,58 +305,57 @@ class Home extends React.Component {
                     </div>
 
                     <div className="w3-btn w3-yellow w3-hover-blue" onClick={this.scrapingData} style={{marginTop: '40px'}}>Scraping Start</div>
+                    {/*<div className="w3-btn w3-yellow w3-hover-blue" onClick={this.scrapingDelete} style={{marginTop: '40px'}}>DB Delete</div>*/}
 
                     {/*<div className="w3-btn w3-blue w3-hover-yellow" data-toggle="collapse" data-target="#productsInsert" style={{marginTop: '40px'}}>Insert Image</div>*/}
+                    {/*<span id="productsInsert" className="w3-row collapse">*/}
+                    {/*    <div className="w3-row w3-center">*/}
+                    {/*    <div className="w3-row" style={{paddingTop: '40px'}}>*/}
+                    {/*        <div className="w3-col l4">*/}
+                    {/*            <img src={imgShow} />*/}
+                    {/*        </div>*/}
 
+                    {/*        <div className="w3-col l8">*/}
+                    {/*            <input type="file" id="owner_picture" accept="image/*"*/}
+                    {/*                   onChange={(event) => this.selectImage(event)} required />*/}
 
-                    <span id="productsInsert" className="w3-row collapse">
-                        <div className="w3-row w3-center">
-                        <div className="w3-row" style={{paddingTop: '40px'}}>
-                            <div className="w3-col l4">
-                                <img src={imgShow} />
-                            </div>
+                    {/*            <input className="w3-input w3-border-blue"*/}
+                    {/*                   type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}*/}
+                    {/*                   placeholder="ID"*/}
+                    {/*                   onChange={(event) => this.setState({ product_id: event.target.value })} required />*/}
 
-                            <div className="w3-col l8">
-                                <input type="file" id="owner_picture" accept="image/*"
-                                       onChange={(event) => this.selectImage(event)} required />
+                    {/*            <input className="w3-input w3-border-blue"*/}
+                    {/*                   type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}*/}
+                    {/*                   placeholder="Category"*/}
+                    {/*                   onChange={(event) => this.setState({ product_category: event.target.value })} required />*/}
 
-                                <input className="w3-input w3-border-blue"
-                                       type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}
-                                       placeholder="ID"
-                                       onChange={(event) => this.setState({ product_id: event.target.value })} required />
+                    {/*            <input className="w3-input w3-border-blue"*/}
+                    {/*                   type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}*/}
+                    {/*                   placeholder="Product Name"*/}
+                    {/*                   onChange={(event) => this.setState({ product_name: event.target.value })} required />*/}
 
-                                <input className="w3-input w3-border-blue"
-                                       type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}
-                                       placeholder="Category"
-                                       onChange={(event) => this.setState({ product_category: event.target.value })} required />
+                    {/*            <input className="w3-input w3-border-blue"*/}
+                    {/*                   type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}*/}
+                    {/*                   placeholder="Product Price"*/}
+                    {/*                   onChange={(event) => this.setState({ product_price: event.target.value })} required />*/}
 
-                                <input className="w3-input w3-border-blue"
-                                       type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}
-                                       placeholder="Product Name"
-                                       onChange={(event) => this.setState({ product_name: event.target.value })} required />
+                    {/*            <input className="w3-input w3-border-blue"*/}
+                    {/*                   type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}*/}
+                    {/*                   placeholder="Product Description"*/}
+                    {/*                   onChange={(event) => this.setState({ product_description: event.target.value })} required />*/}
 
-                                <input className="w3-input w3-border-blue"
-                                       type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}
-                                       placeholder="Product Price"
-                                       onChange={(event) => this.setState({ product_price: event.target.value })} required />
+                    {/*            <input className="w3-input w3-border-blue"*/}
+                    {/*                   type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}*/}
+                    {/*                   placeholder="Product Store Address"*/}
+                    {/*                   onChange={(event) => this.setState({ product_store_address: event.target.value })} required />*/}
 
-                                <input className="w3-input w3-border-blue"
-                                       type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}
-                                       placeholder="Product Description"
-                                       onChange={(event) => this.setState({ product_description: event.target.value })} required />
+                    {/*            <div className="w3-btn w3-yellow w3-hover-blue" onClick={this.registerData} style={{marginTop: '40px'}}>Register</div>*/}
 
-                                <input className="w3-input w3-border-blue"
-                                       type="text" style={{margin: '0 auto', width: '100%', maxWidth: '50%', textAlign: 'left', marginTop: '20px', paddingLeft: '20px'}}
-                                       placeholder="Product Store Address"
-                                       onChange={(event) => this.setState({ product_store_address: event.target.value })} required />
-
-                                <div className="w3-btn w3-yellow w3-hover-blue" onClick={this.registerData} style={{marginTop: '40px'}}>Register</div>
-
-                                <div className="w3-btn w3-yellow w3-hover-blue" onClick={this.productAllShow} style={{marginTop: '40px'}}>Show</div>
-                            </div>
-                        </div>
-                    </div>
-                    </span>
+                    {/*            <div className="w3-btn w3-yellow w3-hover-blue" onClick={this.productAllShow} style={{marginTop: '40px'}}>Show</div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*</span>*/}
                 </section>
 
                 <section className="featured-products min-width">
@@ -366,25 +375,25 @@ class Home extends React.Component {
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/226354STK.png')} alt="" />
                                     <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">$2.49</div>
+                                    <div className="red-txt">SAR 2.49</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/134890FLS.png')} alt="" />
                                     <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/134051DS.png')} alt="" />
                                     <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/166882FLS.png')} alt="" />
                                     <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">$2.03</div>
+                                    <div className="red-txt">SAR 2.03</div>
                                 </div>
                             </div>
 
@@ -393,25 +402,25 @@ class Home extends React.Component {
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/360691STK.png')} alt="" />
                                     <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">$2.49</div>
+                                    <div className="red-txt">SAR 2.49</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/183535BLK.png')} alt="" />
                                     <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/359619BAK.png')} alt="" />
                                     <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/250405FLS.png')} alt="" />
                                     <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">$2.03</div>
+                                    <div className="red-txt">SAR 2.03</div>
                                 </div>
                             </div>
 
@@ -420,25 +429,25 @@ class Home extends React.Component {
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/51589POT.png')} alt="" />
                                     <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">$2.49</div>
+                                    <div className="red-txt">SAR 2.49</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/171448POT.png')} alt="" />
                                     <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/171464POT.png')} alt="" />
                                     <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/174271KST.png')} alt="" />
                                     <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">$2.03</div>
+                                    <div className="red-txt">SAR 2.03</div>
                                 </div>
                             </div>
 
@@ -446,25 +455,25 @@ class Home extends React.Component {
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/176489STK.png')} alt="" />
                                     <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">$2.49</div>
+                                    <div className="red-txt">SAR 2.49</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/181242PAK.png')} alt="" />
                                     <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/183535BLK.png')} alt="" />
                                     <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/184415STK.png')} alt="" />
                                     <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">$2.03</div>
+                                    <div className="red-txt">SAR 2.03</div>
                                 </div>
                             </div>
 
@@ -472,25 +481,25 @@ class Home extends React.Component {
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/186830STK.png')} alt="" />
                                     <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">$2.49</div>
+                                    <div className="red-txt">SAR 2.49</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/190740CUP.png')} alt="" />
                                     <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/201101DS.png')} alt="" />
                                     <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/207282STK.png')} alt="" />
                                     <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">$2.03</div>
+                                    <div className="red-txt">SAR 2.03</div>
                                 </div>
                             </div>
 
@@ -498,25 +507,25 @@ class Home extends React.Component {
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/208733STK.png')} alt="" />
                                     <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">$2.49</div>
+                                    <div className="red-txt">SAR 2.49</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/295942STK.png')} alt="" />
                                     <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/351352DS.png')} alt="" />
                                     <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/989681FLS.png')} alt="" />
                                     <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">$2.03</div>
+                                    <div className="red-txt">SAR 2.03</div>
                                 </div>
                             </div>
 
@@ -524,25 +533,25 @@ class Home extends React.Component {
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/186830STK.png')} alt="" />
                                     <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">$2.49</div>
+                                    <div className="red-txt">SAR 2.49</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/190740CUP.png')} alt="" />
                                     <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/201101DS.png')} alt="" />
                                     <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">$2.99</div>
+                                    <div className="red-txt">SAR 2.99</div>
                                 </div>
 
                                 <div className="card-bg-slider">
                                     <img className="img-item" src={require('../assets/images/products/207282STK.png')} alt="" />
                                     <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">$2.03</div>
+                                    <div className="red-txt">SAR 2.03</div>
                                 </div>
                             </div>
                         </OwlCarousel>
@@ -565,7 +574,7 @@ class Home extends React.Component {
                                             <a href={item.scraping_store_address}><img className="img-item" key={key} src={item.scraping_photo_link}/></a>
                                             <div className="scraping-name">{item.scraping_name}</div>
                                             <div className="blue-txt">{item.scraping_description}</div>
-                                            <div className="red-txt">${item.scraping_price}</div>
+                                            <div className="red-txt">SAR {item.scraping_price}</div>
                                         </div>
                                     )
                                 }
@@ -583,7 +592,7 @@ class Home extends React.Component {
                                             <a href={item.scraping_store_address}><img className="img-item" key={key} src={item.scraping_photo_link}/></a>
                                             <div className="scraping-name">{item.scraping_name}</div>
                                             <div className="blue-txt">{item.scraping_description}</div>
-                                            <div className="red-txt">${item.scraping_price}</div>
+                                            <div className="red-txt">SAR {item.scraping_price}</div>
                                         </div>
                                     )
                                 }
@@ -608,7 +617,7 @@ class Home extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        productList: state.filter.productList,
+        // productList: state.filter.productList,
         scrapingList: state.scrapingProduct.scrapingList,
     }
 };
@@ -620,5 +629,6 @@ export default connect(
         fetchAllProducts,
         scrapingAllProducts,
         gettingLink,
+        // ScrapingDelete,ScrapingDelete,
     }
 )(Home);

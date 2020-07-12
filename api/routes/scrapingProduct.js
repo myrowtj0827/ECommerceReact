@@ -13,11 +13,11 @@ let goLink = [];
 let mLen, timeFlag;
 
 router.post("/scraping-product", async (req, res) => {
-    let baseUrl = "https://www.noon.com/saudi-en/fashion/women-31229/shoes-16238/athletic-16239";
+    let baseUrl = "https://www.noon.com/saudi-en/fashion/men-31225/clothing-16204/active-16233/sportswear-all";
 
     let firstStr = "div.bannerContainer.bannerModule";
     let secondStr = "div.productContainer";
-
+    goLink.slice(0, goLink.length);
     goLink[0] = baseUrl;
     let m = 0;
 
@@ -31,41 +31,48 @@ router.post("/scraping-product", async (req, res) => {
     await scraping_Product.collection.deleteMany({});
     await scraping_Product.save();
 
-    //while (m < goLink.length) {
+    /**
+     * 1th filter
+     */
+    while (m < goLink.length) {
+        await sleep_Time(1500);
+
         await gettingFirstStageLink(firstStr, goLink[m]);
-   //     m = m + 1;
-        console.log("1st Stage Current Index ===== ", m, '\t', 'goLink.length +++++++++ ', goLink.length);
-   // }
+        //await delay();
+
+        m = m + 1;
+        console.log("1st -> ", m, '\t', 'goLink.length : ', goLink.length);
+    }
 
     let nCount_First = goLink.length;
     m = 0;
-     while (m < nCount_First) {
-         await gettingFirstStageLink(secondStr, goLink[m]);
-         m = m + 1;
-         console.log("2nd Stage Current Index ==== ", m, '/', nCount_First, '\t\t', 'goLink.length +++++ ', goLink.length);
-     }
 
-
-    // await ScrapingProduct.find({}).then(async aLink => {
-    //     for(let i = 1; i < nCount_First; i ++) {
-    //         //await gettingFirstStageLink(secondStr, aLink[i].scraping_store_address);
-    //         console.log(i, ' = ', aLink[i], aLink.length);
-    //
-    //         console.log("2nd Stage Current Index ==== ", i, '\t\t', 'goLink.length +++++ ', goLink.length);
-    //     }
-    // });
-
+    /**
+     * 2nd filter
+     */
+    while (m < nCount_First) {
+        await sleep_Time(1500);
+        await gettingFirstStageLink(secondStr, goLink[m]);
+        m = m + 1;
+        console.log("2nd -> ", m, '/', nCount_First, '\t', 'goLink.length : ', goLink.length);
+    }
 
     let nCount_Products = goLink.length;
+
+    /**
+     * Getting Last Information
+     */
     await gettingScraping(nCount_First-1, nCount_Products);
-    console.log("nCount_First = ", nCount_First + "\t\t\t nCount_Products = ", nCount_Products + "Done !!!!!");
+    console.log(" ===============  Scraping Done !!!!! =============");
     return res.status(200).json(scraping_Product);
 });
 
-
-
 router.get("/scraping-product-all", async (req, res) => {
-    ScrapingProduct.find({}).then( scrapingList =>  {
+    let regLink = new RegExp('.+');
+
+    ScrapingProduct.find({
+        scraping_photo_link: {$regex: regLink}
+    }).then( scrapingList =>  {
         if(scrapingList){
 
             return res.status(200).json({results: [...scrapingList]});
@@ -89,9 +96,11 @@ router.post("/scraping-product-sort", (req, res) => {
 
     reE += '.*$';
     let rew = new RegExp(reE);
+    let regLink = new RegExp('.+');
 
     ScrapingProduct.find({
-        scraping_category: {$regex: rew, $options: 'i/w'}
+        scraping_category: {$regex: rew, $options: 'i/w'},
+        scraping_photo_link: {$regex: regLink}
     }).collation( { locale: 'en', strength: 2 } ).sort({scraping_price: 1}).then(scrapingSortList => {
 
         if(scrapingSortList){
@@ -103,8 +112,19 @@ router.post("/scraping-product-sort", (req, res) => {
     });
 });
 
-module.exports = router;
 
+router.post("/delete-product", async (req, res) => {
+
+    const scraping_Product = new ScrapingProduct({
+        scraping_id: 0,
+        scraping_store_address: '',
+    });
+
+    await scraping_Product.collection.deleteMany({});
+
+    console.log("Success Delete !");
+});
+module.exports = router;
 
 /**
  * Getting the last URL Information
@@ -112,9 +132,10 @@ module.exports = router;
  * @returns {Promise<[]|number>}
  */
  async function gettingFirstStageLink(pStr, scrappingUrl) {
-    let mTime;
+
     try {
         const result = await axios.get(scrappingUrl);
+
         let $ = await cheerio.load(result.data);
         timeFlag = 0;
 
@@ -132,15 +153,17 @@ module.exports = router;
                     });
                     scraping_Product.save();
 
-                    console.log(goLink.length, "   --->  ", goLink[goLink.length - 1]);
+                    console.log("  -> ", goLink.length);
                 }
             }
         });
 
     } catch (error) {
-        console.log("===", goLink.length, '===', goLink[goLink.length-1], '   ++++++    ', error.response.statusText);
-
+        console.log(goLink.length, " -> 1: ", error.response.statusText);
+        // await sleep(1000);
+        await sleep(3100);
         await gettingFirstStageLink(pStr, scrappingUrl);
+
     }
 }
 
@@ -153,6 +176,8 @@ async function gettingScraping(nFirst, nSecond) {
 
     for (let i = nFirst; i < nSecond; i ++) {
         try {
+
+            await sleep(1010);
             const result = await axios.get(goLink[i]);
             let $ = await cheerio.load(result.data);
 
@@ -191,19 +216,37 @@ async function gettingScraping(nFirst, nSecond) {
             let productDescription = $(sInfo).find("div.coreWrapper > div > h1").text().trim();
             let productPrice = $(sInfo).find("span.sellingPrice > span > span.value").text().trim();
 
-
-            console.log("photoLink = ", photoLink);
-
-
             await ScrapingProduct.updateOne({scraping_id: (i+1).toString()},
                 {scraping_category: categoryList, scraping_name: productName, scraping_photo_link: photoLink,
                     scraping_description: productDescription, scraping_price: productPrice, scraping_thumbnail_Link: thumbnailPhotoLink});
 
         } catch (error) {
-            console.log('====', i, '   +++    ', error.response.statusText);
+            await sleep(3100);
+            console.log('3 : last -> ', i,  error.response.statusText);
             i = i - 1;
         }
     }
 }
 
+// helper to delay execution by 300ms to 1100m
+async function delay() {
+    const durationMs = Math.random() * 800 + 300;
+    return new Promise(resolve => {
+        setTimeout(() => resolve(), durationMs);
+    });
+}
+
+function sleep(milliseconds) {
+    let timeStart = new Date().getTime();
+    while (true) {
+        let elapsedTime = new Date().getTime() - timeStart;
+        if (elapsedTime > milliseconds) {
+            break;
+        }
+    }
+}
+
+const sleep_Time = milliseconds => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+};
 
