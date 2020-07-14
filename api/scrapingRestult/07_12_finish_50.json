@@ -1,18 +1,5 @@
 [{
   "_id": {
-    "$oid": "5f0a7b7b00acad7cb054ad28"
-  },
-  "scraping_id": "1",
-  "scraping_store_address": "https://www.noon.com/saudi-en/fashion/men-31225/clothing-16204/active-16233/sportswear-all",
-  "__v": 0,
-  "scraping_category": "Fashion/Men/Clothing/Activewear/",
-  "scraping_description": "",
-  "scraping_name": "",
-  "scraping_photo_link": null,
-  "scraping_price": null,
-  "scraping_thumbnail_Link": null
-},{
-  "_id": {
     "$oid": "5f0a7b8300acad7cb054ad29"
   },
   "scraping_id": "2",
