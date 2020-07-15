@@ -34,14 +34,14 @@ router.post("/scraping-product", async (req, res) => {
     /**
      * repeat scraping const
      */
-    let m = 1258;
+    let m = 415;
     const flag_new = false;
     const flag_repeat = true;
 
     /**
      * Repeat order
      */
-    const nth = 1;
+    const nth = 2;
 
     await initializeDB(flag_new, flag_repeat);
 
@@ -52,7 +52,7 @@ router.post("/scraping-product", async (req, res) => {
          * 1th filter
          */
         while (m < goLink.length) {
-            await sleep_Time(500);
+            //await sleep_Time(500);
             await gettingFirstStageLink(firstStr, m);
             m = m + 1;
             await console.log("\n 1st stage -> ",  goLink.length, '/' , m, "th", "   Passed \n");
@@ -64,7 +64,7 @@ router.post("/scraping-product", async (req, res) => {
          * 2nd filter
          */
         while (m < nCount_First) {
-            await sleep_Time(500);
+            //await sleep_Time(500);
             await gettingFirstStageLink(secondStr, m);
             m = m + 1;
             await console.log("\n 2nd stage -> ", nCount_First, '/', m, "th   Passed \n");
@@ -76,9 +76,13 @@ router.post("/scraping-product", async (req, res) => {
          * 2nd filter
          */
 
-        nCount_First = 1;
+        /**
+         * nCount-First is the data number after 1st filter finished
+         */
+        nCount_First = 1341;
+
         while (m < nCount_First) {
-            await sleep_Time(500);
+            //await sleep_Time(500);
             await gettingFirstStageLink(secondStr, m);
             m = m + 1;
             await console.log("\n 2nd stage -> ", nCount_First, '/', m, "th   Passed \n");
@@ -260,7 +264,7 @@ async function gettingFirstStageLink(pStr, mIndex) {
 
         console.log(goLink.length, " / ", mIndex + 1, "th  -> ", "Timeout 1st + 2nd");
         // await sleep(1000);
-        await sleep(3100);
+        await sleep(2500);
         await gettingFirstStageLink(pStr, mIndex);
     }
 }
@@ -279,7 +283,7 @@ async function gettingScraping(nFirst, nSecond) {
         try {
             if(i === 0) i = 1;
 
-            await sleep(1100);
+            //await sleep(1100);
             const result = await axios.get(goLink[i - 1]);
             let $ = await cheerio.load(result.data);
 
@@ -334,7 +338,7 @@ async function gettingScraping(nFirst, nSecond) {
             console.log('3rd stage -> ', goLink.length, '/', i, 'th  ', "Timeout");
             i = i - 1;
 
-            await sleep(2100);
+            await sleep(1000);
         }
     }
 }
