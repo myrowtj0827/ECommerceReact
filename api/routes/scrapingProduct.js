@@ -13,158 +13,52 @@ const fs = require('fs');
 let goLink = [];
 let mLen, timeFlag;
 
+// let baseUrl = "https://www.noon.com/saudi-en/";
+ let baseUrl = "https://www.noon.com/saudi-en/beauty-and-health/beauty/makeup-16142/lips/nyx_professional_makeup?f[is_fbn]=1";
+
+let firstStr = "div.bannerContainer.bannerModule";
+let secondStr = "div.productContainer";
+
+/**
+ * starting newly
+ */
+let m = 0;
+const flag_new = true;
+const flag_repeat = false;
+
+/**
+ * repeat scraping const
+ */
+// let m = 5;
+// const flag_new = false;
+// const flag_repeat = true;
+
+/**
+ * Repeat order
+ */
+const nth = 1;
+let nCount_First = 1, nCount_Products;
+
 router.post("/scraping-product", async (req, res) => {
     await console.log("--------------- success  ----------------");
 
-    let baseUrl = "https://www.noon.com/saudi-en/";
-    //let baseUrl = "https://www.noon.com/saudi-en/beauty-and-health/beauty";
-
-    let firstStr = "div.bannerContainer.bannerModule";
-    let secondStr = "div.productContainer";
     await goLink.slice(0, goLink.length);
     goLink[0] = baseUrl;
 
-    /**
-     * starting newly
-     */
-    // let m = 0;
-    // const flag_new = true;
-    // const flag_repeat = false;
-
-    /**
-     * repeat scraping const
-     */
-    let m = 415;
-    const flag_new = false;
-    const flag_repeat = true;
-
-    /**
-     * Repeat order
-     */
-    const nth = 2;
-
     await initializeDB(flag_new, flag_repeat);
 
-    let nCount_First = 1, nCount_Products;
-
-    if (nth === 1) {
-        /**
-         * 1th filter
-         */
-        while (m < goLink.length) {
-            //await sleep_Time(500);
-            await gettingFirstStageLink(firstStr, m);
-            m = m + 1;
-            await console.log("\n 1st stage -> ",  goLink.length, '/' , m, "th", "   Passed \n");
-        }
-
-        nCount_First = goLink.length;
-        m = 0;
-        /**
-         * 2nd filter
-         */
-        while (m < nCount_First) {
-            //await sleep_Time(500);
-            await gettingFirstStageLink(secondStr, m);
-            m = m + 1;
-            await console.log("\n 2nd stage -> ", nCount_First, '/', m, "th   Passed \n");
-        }
-        nCount_Products = goLink.length;
-
-    } else if (nth === 2) {
-        /**
-         * 2nd filter
-         */
-
-        /**
-         * nCount-First is the data number after 1st filter finished
-         */
-        nCount_First = 1341;
-
-        while (m < nCount_First) {
-            //await sleep_Time(500);
-            await gettingFirstStageLink(secondStr, m);
-            m = m + 1;
-            await console.log("\n 2nd stage -> ", nCount_First, '/', m, "th   Passed \n");
-        }
-        nCount_Products = goLink.length;
-
-    } else if ( nth === 3) {
-        nCount_First = m;
-        nCount_Products = goLink.length;
-    }
-
     /**
-     * full code
+     * the main scraping part
      */
-    // /**
-    //  * 1th filter
-    //  */
-    // while (m < goLink.length) {
-    //     await sleep_Time(500);
-    //     await gettingFirstStageLink(firstStr, m);
-    //     m = m + 1;
-    //     await console.log("\n 1st stage -> ",  goLink.length, '/' , m, "th", "   Passed \n");
-    // }
-    //
-    // let nCount_First = goLink.length;
-    // m = 0;
-    // /**
-    //  * 2nd filter
-    //  */
-    // while (m < nCount_First) {
-    //     await sleep_Time(500);
-    //     await gettingFirstStageLink(secondStr, m);
-    //     m = m + 1;
-    //     await console.log("\n 2nd stage -> ", nCount_First, '/', m, "th   Passed \n");
-    // }
-    //
-    // let nCount_Products = goLink.length;
+    await mainScraping();
 
-    /**
-     * Getting Last Information
+
+    /** From now on, common scraping part about the whole site
+     * Getting Last Information and Inserting in the real DB
      */
     await gettingScraping(nCount_First, nCount_Products);
     await console.log(" ===============  Scraping Done !!!!! =============");
-
-    /**
-     * Inserting in the real DB
-     */
     await shownData(ScrapingProduct);
-
-    async function initializeDB(type_new, type_repeat) {
-        if ((type_new === true && type_repeat === false) && (m === 0)) { // starting from the first
-            const scraping_Product = await new ScrapingProduct({
-                scraping_id: m + 1,
-                scraping_store_address: baseUrl,
-            });
-
-            await scraping_Product.collection.deleteMany({});
-
-            const scraping_ProductOne = await new ScrapingProduct({
-                scraping_id: m + 1,
-                scraping_store_address: baseUrl,
-            });
-
-            await scraping_ProductOne.save();
-            await console.log( " === +++++++++++++++++++++++++++++++ === Total/Start -> ", await ScrapingProduct.countDocuments(), '/', m + 1, 'th');
-
-        } else if ((type_new === false && type_repeat === true) && (m > 0)) {  // using the previous results
-
-            await ScrapingProduct.find({}).then( async arrayLink => {
-                let t = arrayLink.length;
-
-                for( let i = 0; i < t; i ++) {
-                    goLink[i] = arrayLink[i].scraping_store_address;
-                }
-            });
-
-            await console.log( " === +++++++++++++++++++++++++++++++ ===  Total/Start ", goLink.length, '/', m + 1);
-
-        } else {
-            return res.status(200).json("Conflict of the condition");
-        }
-    }
 
     return res.status(200).json("scraping_Product");
 });
@@ -231,6 +125,90 @@ module.exports = router;
 
 
 
+
+
+
+async function mainScraping() {
+    if (nth === 1) {
+        /**
+         * 1th filter
+         */
+        while (m < goLink.length) {
+            //await sleep_Time(500);
+            await gettingFirstStageLink(firstStr, m);
+            m = m + 1;
+            await console.log("\n 1st stage -> ",  goLink.length, '/' , m, "th", "   Passed \n");
+        }
+
+        nCount_First = goLink.length;
+        m = 0;
+        /**
+         * 2nd filter
+         */
+        while (m < nCount_First) {
+            //await sleep_Time(500);
+            await gettingFirstStageLink(secondStr, m);
+            m = m + 1;
+            await console.log("\n 2nd stage -> ", nCount_First, '/', m, "th   Passed \n");
+        }
+        nCount_Products = goLink.length;
+
+    } else if (nth === 2) {
+        /**
+         * 2nd filter
+         * nCount-First is the data number after 1st filter finished
+         */
+        nCount_First = 1341;
+
+        while (m < nCount_First) {
+            await gettingFirstStageLink(secondStr, m);
+            m = m + 1;
+            await console.log("\n 2nd stage -> ", nCount_First, '/', m, "th   Passed \n");
+        }
+        nCount_Products = goLink.length;
+
+    } else if ( nth === 3) {
+        nCount_First = m;
+        nCount_Products = await ScrapingProduct.countDocuments();
+
+        console.log(nCount_Products, '+++++++++')
+    }
+}
+
+async function initializeDB(type_new, type_repeat) {
+    if ((type_new === true && type_repeat === false) && (m === 0)) { // starting from the first
+        const scraping_Product = await new ScrapingProduct({
+            scraping_id: m + 1,
+            scraping_store_address: baseUrl,
+        });
+
+        await scraping_Product.collection.deleteMany({});
+
+        const scraping_ProductOne = await new ScrapingProduct({
+            scraping_id: m + 1,
+            scraping_store_address: baseUrl,
+        });
+
+        await scraping_ProductOne.save();
+        await console.log( " === +++++++++++++++++++++++++++++++ === Total/Start -> ", await ScrapingProduct.countDocuments(), '/', m + 1, 'th');
+
+    } else if ((type_new === false && type_repeat === true) && (m > 0)) {  // using the previous results
+
+        await ScrapingProduct.find({}).then( async arrayLink => {
+            let t = arrayLink.length;
+
+            for( let i = 0; i < t; i ++) {
+                goLink[i] = arrayLink[i].scraping_store_address;
+            }
+        });
+
+        await console.log( " === +++++++++++++++++++++++++++++++ ===  Total/Start ", goLink.length, '/', m + 1);
+
+    } else {
+        return res.status(200).json("Conflict of the condition");
+    }
+}
+
 async function gettingFirstStageLink(pStr, mIndex) {
     try {
         const result = await axios.get(goLink[mIndex]);
@@ -278,13 +256,12 @@ async function gettingFirstStageLink(pStr, mIndex) {
  */
 async function gettingScraping(nFirst, nSecond) {
 
-    //let nRepeat = 0;
     for (let i = nFirst; i <= nSecond; i ++) {
         try {
             if(i === 0) i = 1;
 
-            //await sleep(1100);
             const result = await axios.get(goLink[i - 1]);
+            await sleep(2000);
             let $ = await cheerio.load(result.data);
 
             /**
@@ -293,7 +270,7 @@ async function gettingScraping(nFirst, nSecond) {
             let categoryList = '';
 
             await $("div.breadcrumbContainer > div > div.breadcrumb").each(async function( index ) {
-
+                await sleep(1000);
                 $("span.crumb > a").each( function( index ) {
                     if ($(this).text() !== undefined) {
                         categoryList += $(this).text() + '/';
@@ -316,29 +293,35 @@ async function gettingScraping(nFirst, nSecond) {
              */
             let sInfo = $("div.primaryDetails");
 
-            let photoLink = $(sInfo).find("div.mediaContainer > div > img").attr("src");
-            let thumbnailPhotoLink = $(sInfo).find("div.mediaContainer > img").attr("src");
-            let productName = $(sInfo).find("div.coreWrapper > div > a").text().trim();
-            let productDescription = $(sInfo).find("div.coreWrapper > div > h1").text().trim();
-            let productPrice = $(sInfo).find("span.sellingPrice > span > span.value").text().trim();
+            let photoLink = await $(sInfo).find("div.mediaContainer > div > img").attr("src");
+            let thumbnailPhotoLink = await $(sInfo).find("div.mediaContainer > img").attr("src");
+            let productName = await $(sInfo).find("div.coreWrapper > div > a").text().trim();
+            let productDescription = await $(sInfo).find("div.coreWrapper > div > h1").text().trim();
+            let productPrice = await $(sInfo).find("div.coreWrapper > div > div.priceRow > div.pdpPrice > p > span.value > span.sellingPriceContainer > span.sellingPrice > span > span.value").text().trim();
 
-            await ScrapingProduct.updateOne({scraping_id: i.toString()},
-                {scraping_category: categoryList, scraping_name: productName, scraping_photo_link: photoLink,
-                    scraping_description: productDescription, scraping_price: productPrice, scraping_thumbnail_Link: thumbnailPhotoLink});
+            console.log("price = ", productPrice);
+
+
+
+            await ScrapingProduct.updateOne({scraping_store_address: goLink[i-1]},
+                [{$set: {scraping_category: categoryList, scraping_name: productName, scraping_photo_link: photoLink,
+                    scraping_description: productDescription, scraping_price: productPrice, scraping_thumbnail_Link: thumbnailPhotoLink}}]).then(async () => {
+                        console.log(i, "    ------> ", goLink[i-1]);
+            });
 
             await console.log("\n 3rd stage -> ", goLink.length, '/', i, "th   Passed \n");
-
         } catch (error) {
-
+            // console.log(i, ' -> ', error.response.status);
             if(error.response === undefined) {
-                console.log("Site Error - Un-existing Product Url");
-                return ;
+                console.log('3rd stage -> ', goLink.length, '/', i, 'th  ', "Site Error - Un-existing Product Url");
+                console.log('3rd stage -> ', goLink.length, '/', i, 'th  ', error);
+            } else {
+
+                console.log('3rd stage -> ', goLink.length, '/', i, 'th  ', "Timeout");
+                i = i - 1;
             }
 
-            console.log('3rd stage -> ', goLink.length, '/', i, 'th  ', "Timeout");
-            i = i - 1;
-
-            await sleep(1000);
+            await sleep(2000);
         }
     }
 }
@@ -404,61 +387,3 @@ function sleep(milliseconds) {
 const sleep_Time = milliseconds => {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
 };
-
-
-/**
- * Getting the URL Information
- * @param scrappingUrl
- * @returns {Promise<[]|number>}
- */
-
-// async function gettingFirstStageLink(pStr, scrappingUrl, mIndex) {
-//
-//     try {
-//         const result = await axios.get(scrappingUrl);
-//         let $ = await cheerio.load(result.data);
-//
-//         await $(pStr).each( async function( index ) {
-//             // await sleep(300);
-//
-//             if ($(this).find('a').attr('href') !== undefined) {
-//                 let cStr = 'https://www.noon.com' + $(this).find('a').attr('href');
-//
-//                 // goLink.push(cStr);
-//                 // goLink = [... new Set(goLink)];
-//
-//                 // console.log("cStr = ", cStr)
-//                 // await ScrapingProduct.find({}).then( async sData => {
-//                 //
-//                 //     let iFlag = 0;
-//                 //     let dbLen = await ScrapingProduct.countDocuments();
-//                 //
-//                 //     for (let i = 0; i < dbLen; i ++) {
-//                 //         if(sData[i].scraping_store_address === cStr) {
-//                 //             iFlag = 1;
-//                 //             break;
-//                 //         }
-//                 //     }
-//                 //
-//                 //     if (iFlag === 0) {
-//
-//                         const scraping_Product = await new ScrapingProduct({
-//                             scraping_id: 1,
-//                             scraping_store_address: cStr
-//                         });
-//
-//                         await scraping_Product.save();
-//
-//                         console.log("  -> ", await ScrapingProduct.countDocuments());
-//                 //     }
-//                 //
-//                 // });
-//
-//             }
-//         });
-//     } catch (error) {
-//         console.log(goLink.length, " / ", mIndex, "th -> ", error.response.statusText);
-//         await sleep(2100);
-//         await gettingFirstStageLink(pStr, scrappingUrl, mIndex);
-//     }
-// }
