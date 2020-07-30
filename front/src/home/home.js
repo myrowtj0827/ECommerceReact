@@ -95,8 +95,8 @@ class Home extends React.Component {
         const {
             fetchAllProducts,
             scrapingAllProducts,
-            // productList,
-            // scrapingList,
+            productList,
+            scrapingList,
         } = this.props;
 
         if (fetchAllProducts) {
@@ -110,6 +110,7 @@ class Home extends React.Component {
         $("button").click(function () {
             $.getAttribute();
         })
+
     }
 
     scrapingData = () => {
@@ -379,187 +380,191 @@ class Home extends React.Component {
                                      margin={4}
                                      autoplay={true}
                         >
+
                             <div className="flex-card">
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/226354STK.png')} alt="" />
-                                    <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">SAR 2.49</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1542352705/N14773385A_M2.jpg'} alt="" />
+                                    <div className="blue-txt">FC Bayern Pre Match Jersey Collegiate Navy/White</div>
+                                    <div className="red-txt">SAR 140</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/134890FLS.png')} alt="" />
-                                    <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1562821028/N25889578V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Boot League Short Sleeve T-Shirt Black/Collegiate Navy/Active Teal/White</div>
+                                    <div className="red-txt">SAR 97</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/134051DS.png')} alt="" />
-                                    <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1586153040/N29872531V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Sportswear Remix T-Shirt Black</div>
+                                    <div className="red-txt">SAR 83</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/166882FLS.png')} alt="" />
-                                    <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">SAR 2.03</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1589521994/N34111287V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Moments Basketball T-Shirt Light Blue</div>
+                                    <div className="red-txt">SAR 143</div>
                                 </div>
                             </div>
 
 
                             <div className="flex-card">
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/360691STK.png')} alt="" />
-                                    <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">SAR 2.49</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1572184233/N31243714V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Star Chevron T-Shirt Red</div>
+                                    <div className="red-txt">SAR 97</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/183535BLK.png')} alt="" />
-                                    <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1572326301/N31288604V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Felix Graphic T-Shirt white</div>
+                                    <div className="red-txt">SAR 148</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/359619BAK.png')} alt="" />
-                                    <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1589521985/N34111232V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Baseline Buckets Basketball T-Shirt Black</div>
+                                    <div className="red-txt">SAR 119</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/250405FLS.png')} alt="" />
-                                    <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">SAR 2.03</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1585594405/N29872238V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Dri-FIT Humor T-Shirt Black/White</div>
+                                    <div className="red-txt">SAR 81</div>
+                                </div>
+                            </div>
+
+                            <div className="flex-card">
+                                <div className="card-bg-slider">
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1589715672/N11292764A_1.jpg'} alt="" />
+                                    <div className="blue-txt">Skin Refining Clear-Up Strips</div>
+                                    <div className="red-txt">SAR 19</div>
+                                </div>
+
+                                <div className="card-bg-slider">
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1513172074/N12874978A_1.jpg'} alt="" />
+                                    <div className="blue-txt">Body And Face Scrubbing Cream 500ml</div>
+                                    <div className="red-txt">SAR 45</div>
+                                </div>
+
+                                <div className="card-bg-slider">
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1557487643/N15658822A_1.jpg'} alt="" />
+                                    <div className="blue-txt">Vitamin E Oil Clear 75ml</div>
+                                    <div className="red-txt">SAR 17.2</div>
+                                </div>
+
+                                <div className="card-bg-slider">
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1583837534/N29905109A_1.jpg'} alt="" />
+                                    <div className="blue-txt">Facial Serum Vitamin C 30ml</div>
+                                    <div className="red-txt">SAR 19</div>
                                 </div>
                             </div>
 
 
                             <div className="flex-card">
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/51589POT.png')} alt="" />
-                                    <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">SAR 2.49</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1525757135/N13714689A_1.jpg'} alt="" />
+                                    <div className="blue-txt">Multipurpose Foldable Table White 74centimeter</div>
+                                    <div className="red-txt">SAR 89</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/171448POT.png')} alt="" />
-                                    <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1556468124/N24214884A_1.jpg'} alt="" />
+                                    <div className="blue-txt">9-Layer Shoe Rack Grey/Black 60x108x30centimeter</div>
+                                    <div className="red-txt">SAR 158</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/171464POT.png')} alt="" />
-                                    <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1522418998/N14004197A_1.jpg'} alt="" />
+                                    <div className="blue-txt">Inflatable Pull Out Sofa Bed Black 221x66x193centimeter</div>
+                                    <div className="red-txt">SAR 359</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/174271KST.png')} alt="" />
-                                    <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">SAR 2.03</div>
-                                </div>
-                            </div>
-
-                            <div className="flex-card">
-                                <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/176489STK.png')} alt="" />
-                                    <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">SAR 2.49</div>
-                                </div>
-
-                                <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/181242PAK.png')} alt="" />
-                                    <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
-                                </div>
-
-                                <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/183535BLK.png')} alt="" />
-                                    <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
-                                </div>
-
-                                <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/184415STK.png')} alt="" />
-                                    <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">SAR 2.03</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1556468124/N24214879A_1.jpg'} alt="" />
+                                    <div className="blue-txt">12-Layer Shoe Rack Black/White 118x120x30centimeter</div>
+                                    <div className="red-txt">SAR 140</div>
                                 </div>
                             </div>
 
+
                             <div className="flex-card">
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/186830STK.png')} alt="" />
-                                    <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">SAR 2.49</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1590059570/N37750239V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Smash V2 Max</div>
+                                    <div className="red-txt">SAR 223</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/190740CUP.png')} alt="" />
-                                    <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1590562286/N38379738V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Pack of 9 Sensitive Baby Wipes, 540 Counts</div>
+                                    <div className="red-txt">SAR </div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/201101DS.png')} alt="" />
-                                    <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1589996076/N35699194V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Bountiful Quick Path Sports Shoes</div>
+                                    <div className="red-txt">SAR 212</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/207282STK.png')} alt="" />
-                                    <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">SAR 2.03</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1536065876/N16898584A_1.jpg'} alt="" />
+                                    <div className="blue-txt">6-Piece Compressed Two-Sided Comforter Set Microfibre Dark Purple King</div>
+                                    <div className="red-txt">SAR 144.85</div>
                                 </div>
                             </div>
 
+
                             <div className="flex-card">
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/208733STK.png')} alt="" />
-                                    <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">SAR 2.49</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1572867966/N31073554A_1.jpg'} alt="" />
+                                    <div className="blue-txt">Printed Flat Bedsheet Set Cotton Blend Multicolour Double</div>
+                                    <div className="red-txt">SAR 32</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/295942STK.png')} alt="" />
-                                    <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1569584309/N30384324A_1.jpg'} alt="" />
+                                    <div className="blue-txt">3-Piece Compressed Single Size Comforter Set Microfibre Pink</div>
+                                    <div className="red-txt">SAR 34</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/351352DS.png')} alt="" />
-                                    <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1582650388/N23010459A_1.jpg'} alt="" />
+                                    <div className="blue-txt">6-Piece Platinum Plus Printed Bedsheet Set Cotton Blend Multicolor 229X254centimeter</div>
+                                    <div className="red-txt">SAR 58</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/989681FLS.png')} alt="" />
-                                    <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">SAR 2.03</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1554838769/N23114850A_1.jpg'} alt="" />
+                                    <div className="blue-txt">Modern Home Painted Linen Pillowcase Linen White/Yellow</div>
+                                    <div className="red-txt">SAR 9.95</div>
                                 </div>
                             </div>
 
+
                             <div className="flex-card">
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/186830STK.png')} alt="" />
-                                    <div className="blue-txt">Smaakt Bio Soba Noedels 250g</div>
-                                    <div className="red-txt">SAR 2.49</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1589526624/N37107396V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Breathe Run T-Shirt Black</div>
+                                    <div className="red-txt">SAR 115</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/190740CUP.png')} alt="" />
-                                    <div className="blue-txt">'La Place Girasoli Tomaat 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1578908718/N32735043V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Rebel Block Sweatpants Grey</div>
+                                    <div className="red-txt">SAR 230</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/201101DS.png')} alt="" />
-                                    <div className="blue-txt">'La Place Erwt en Munt 250g</div>
-                                    <div className="red-txt">SAR 2.99</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1589526627/N37107421V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Breath Run Tank Top Black</div>
+                                    <div className="red-txt">SAR 104</div>
                                 </div>
 
                                 <div className="card-bg-slider">
-                                    <img className="img-item" src={require('../assets/images/products/207282STK.png')} alt="" />
-                                    <div className="blue-txt">'Aviko SuperCrunch Oven Pommes Frites 750g</div>
-                                    <div className="red-txt">SAR 2.03</div>
+                                    <img className="img-item" src={'https://k.nooncdn.com/t_desktop-pdp-v1/v1589521998/N34111313V_1.jpg'} alt="" />
+                                    <div className="blue-txt">Charged Cotton Training T-Shirt Light Blue</div>
+                                    <div className="red-txt">SAR 135</div>
                                 </div>
                             </div>
                         </OwlCarousel>

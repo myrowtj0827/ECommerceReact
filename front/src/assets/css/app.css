@@ -37,6 +37,14 @@
   .products-image {
     max-width: 100% !important;
   }
+
+  .flex-card {
+
+    padding-top: 15px !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    grid-column-gap: 15px !important;
+  }
+
 }
 
 @media screen and (max-width: 992px){
@@ -506,7 +514,7 @@ color: white !important;
   display: grid;
   padding-top: 20px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-auto-rows: 1fr;
+  grid-auto-rows:  auto;
   grid-column-gap: 25px;
 }
 
