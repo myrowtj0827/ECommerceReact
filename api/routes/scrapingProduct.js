@@ -32,7 +32,7 @@ let secondStr = "div.productContainer";
 /**
  * repeat scraping const
  */
-let m = 25262;
+let m = 34051;
 const flag_new = false;
 const flag_repeat = true;
 
