@@ -3,21 +3,18 @@ const router = express.Router();
 const ScrapingProduct = require("../models/ScrapingProduct");
 const Filter = require("../models/Filter");
 
-const async = require('async');
-const wait = require('wait.for');
 const axios = require("axios");
 const request = require('request');
 const cheerio = require('cheerio');
 
 const fs = require('fs');
 let goLink = [];
-let mLen, timeFlag;
+let mLen;
+
 
 // let baseUrl = "https://www.noon.com/saudi-en/";
- let baseUrl = "https://www.noon.com/saudi-en/beauty-and-health/beauty/makeup-16142/lips/nyx_professional_makeup?f[is_fbn]=1";
-
-let firstStr = "div.bannerContainer.bannerModule";
-let secondStr = "div.productContainer";
+// let firstStr = "div.bannerContainer.bannerModule";
+// let secondStr = "div.productContainer";
 
 /**
  * starting newly
@@ -32,7 +29,7 @@ let secondStr = "div.productContainer";
 /**
  * repeat scraping const
  */
-let m = 34051;
+let m = 35072;
 const flag_new = false;
 const flag_repeat = true;
 
@@ -45,26 +42,74 @@ const flag_repeat = true;
 const nth = 3;
 let nCount_First = 1, nCount_Products;
 
+
+let baseUrl = "https://swsg.co/ar/";
+let pStage = 0;
+let lastStage = false;
+
+let lastLink = "a";
+
+let nCategory = 0;
+
+
 router.post("/scraping-product", async (req, res) => {
     await console.log("--------------- success  ----------------");
 
-    await goLink.slice(0, goLink.length);
-    goLink[0] = baseUrl;
+    if(baseUrl === "https://www.noon.com/saudi-en/") {
+        await goLink.slice(0, goLink.length);
+        goLink[0] = baseUrl;
+        await initializeDB(flag_new, flag_repeat);
+        /**
+         * the main scraping part
+         */
+        await mainScraping();
+        /** From now on, common scraping part about the whole site
+         * Getting Last Information and Inserting in the real DB
+         */
+        await gettingScraping(nCount_First, nCount_Products);
+        await console.log(" ===============  Scraping Done !!!!! =============");
+        await shownData(ScrapingProduct);
 
-    await initializeDB(flag_new, flag_repeat);
+    } else if(baseUrl === "https://swsg.co/ar/") {
 
-    /**
-     * the main scraping part
-     */
-    await mainScraping();
+        console.log("2nd result starting");
+
+        await goLink.slice(0, goLink.length);
+        goLink[0] = baseUrl;
+        await initializeSimpleDB(pStage);
+
+        const scrapingItem = await ScrapingProduct.find({});
+        for(let k = 0; k < scrapingItem.length; k ++) {
+            goLink[k] = scrapingItem[k].scraping_store_address;
+            console.log(k + 1, " -> ", goLink[k]);
+        }
+        console.log("The Initialize !");
+
+        /**
+         * Getting Last Links
+         */
+        nCategory = 1;
+        await gettingFinalLink(0, lastLink, baseUrl);
+
+        const items = await ScrapingProduct.find({});
+        let kl = 1;
+
+        for (const ele of items) {
+            await gettingFinalLink(0, lastLink, ele.scraping_store_address);
+
+            console.log(kl, " -> ", ele.scraping_store_address);
+            kl ++;
+        }
+
+        console.log("Getting the last link !", goLink.length);
 
 
-    /** From now on, common scraping part about the whole site
-     * Getting Last Information and Inserting in the real DB
-     */
-    await gettingScraping(nCount_First, nCount_Products);
-    await console.log(" ===============  Scraping Done !!!!! =============");
-    await shownData(ScrapingProduct);
+        await console.log(" ===============  Category Scraping Done !!!!! =============");
+        console.log("nCategory = ", nCategory);
+
+    }
+
+
 
     return res.status(200).json("scraping_Product");
 });
@@ -246,7 +291,6 @@ async function gettingFirstStageLink(pStr, mIndex) {
     }
 }
 
-
 /**
  * Getting the last scraping Information
  * @param nFirst
@@ -321,7 +365,6 @@ async function gettingScraping(nFirst, nSecond) {
     }
 }
 
-
 /**
  * Inserting the scraping results to the real DB
  * @param pDbName
@@ -361,13 +404,218 @@ async function shownData(pDbName) {
     await console.log("Adding to the real DB !!!");
 }
 
-// helper to delay execution by 300ms to 1100m
-async function delay() {
-    const durationMs = Math.random() * 800 + 300;
-    return new Promise(resolve => {
-        setTimeout(() => resolve(), durationMs);
-    });
+/**
+ * Initailize of the database
+ * @param pStage
+ * @returns {Promise<*>}
+ */
+async function initializeSimpleDB(pStage) {
+    if (pStage === 0) { // starting from the first
+        const scraping_Product = await new ScrapingProduct({
+            scraping_id: 1,
+            scraping_store_address: baseUrl,
+        });
+
+        await scraping_Product.collection.deleteMany({});
+
+        goLink = [];
+        goLink[0] = baseUrl;
+
+        const scraping_ProductOne = await new ScrapingProduct({
+            scraping_id: 1,
+            scraping_store_address: baseUrl,
+        });
+        m = 0;
+
+        await scraping_ProductOne.save();
+
+        await console.log( " === +++++++ === Total/Start -> ", await ScrapingProduct.countDocuments(), '/', m + 1, 'th');
+
+    } else {
+        return res.status(200).json("Conflict of the condition");
+    }
 }
+
+/**
+ * Getting CategoryName and Link
+ * @param firstStr
+ * @param baseUrl
+ * @returns {Promise<number>}
+ */
+async function gettingFinalLink(iM, matchStr, bUrl) {
+    try {
+        if (lastStage === true) {
+            try {
+                require('chromedriver');
+                const webdriver = require('selenium-webdriver');
+                let By = webdriver.By;
+                let until = webdriver.until;
+                const driver = new webdriver.Builder()
+                    .forBrowser('chrome')
+                    .build();
+
+                await driver.get(bUrl);
+
+                try {
+                    let mError = await driver.findElement(By.className('nmf__title')).getAttribute('innerHTML');console.log("***********22********");
+                    if(mError === "Nessun incontro trovato.") {
+                        await driver.quit();
+                        return 0;
+                    }
+                } catch (e) {
+                    await sleep(300);
+                }
+
+
+                await sleep(1000);
+                driver.navigate().to(driver.getCurrentUrl());
+                // console.log("=======", await (await driver).getCurrentUrl());
+
+                await driver.wait(until.elementLocated(By.className(matchStr)));
+                let sMatch = await driver.findElement(By.className(matchStr)).getAttribute('innerHTML');
+                console.log(sMatch.length);
+                await driver.quit();
+
+                /**
+                 * Getting the last Link
+                 */
+                let sCategory;
+                let sCountry;
+                let sLeague;
+
+                let nCount = 0;
+                let lastLink;
+                let sTeamA;
+                let sTeamB;
+                let finalScore;
+
+                let ss = bUrl.split("/");
+                sCategory = ss[3];
+                sCountry = ss[4];
+                sLeague = ss[5];
+
+                if(sLeague.includes("-20") === false) {
+                    sLeague += "-2019-2020";
+                }
+
+                if(sCategory === "calcio") {
+                    sCategory = "football";
+                }
+
+                let sId = "id=\"g_";
+                let n = sMatch.search(sId);
+
+                console.log("n's Testing", n);
+                if(n === -1) throw 0;
+
+                while(n >= 0) {
+                    try {
+                        sMatch = sMatch.slice(n + 8, );
+                        if(sMatch[0] === "_") sMatch = sMatch.slice(1, );
+
+                        let nI = sMatch.search("\"");
+                        lastLink = sMatch.slice(0, nI);
+                        sMatch = sMatch.slice(nI + 1, );
+
+                        lastLink = baseUrl + "partita/" + lastLink + "/#informazioni-partita/";
+                        console.log('\n LastLink = ', lastLink);
+                        nCount += 1;
+
+                        let t = (iM).toString() + "-" + (nCount).toString();
+
+
+                        const scraping_data = await new Filter({
+                            id: t,
+                            link: lastLink.trim(),
+                            category: sCategory.trim(),
+                            country: sCountry.trim(),
+                            league: sLeague.trim(),
+                        });
+                        await scraping_data.save();
+
+                        n = sMatch.search(sId);
+                    } catch (e) {
+                        await driver.quit();
+                        n = sMatch.search(sId);
+                        console.log(" error -> n = ", n);
+                    }
+                }
+            } catch (e) {
+                if(error.response === undefined) {
+                    console.log("Site Error - Un-existing Url");
+                    await sleep(1000);
+                    return 0;
+                } else {
+                    console.log("Last Stage Error !!", error);
+                    await sleep(1000);
+                    await gettingCategoryLink(matchStr, bUrl);
+                }
+            }
+        } else {
+            const result = await axios.get(bUrl);
+            let $ = await cheerio.load(result.data);
+
+            const aTags = $(matchStr);
+
+
+            for(let kk = 0; kk < aTags.length; kk++) {            //console.log("======================", aTags.length);
+                let aStr = await aTags[kk]['attribs']['href'];
+
+                try {
+                    if ((aStr !== undefined) && (aStr.includes("https://swsg.co/ar/") === true) && (aStr.slice(aStr.length - 6, ).includes(".html") === true)) {
+                        mLen = goLink.length;
+                        goLink.push(aStr);
+
+                        goLink = [...new Set(goLink)];
+
+                        if(mLen < goLink.length) {
+                            const scraping_Product = new ScrapingProduct({
+                                scraping_id: goLink.length,
+                                scraping_store_address: goLink[goLink.length - 1]
+                            });
+
+                            await scraping_Product.save();
+                            console.log(goLink.length, ' -> ', aStr, '\n');
+                        }
+                    }
+                } catch (e) {}
+            }
+
+
+
+
+
+
+
+
+        }
+    } catch (error) {
+        await sleep(1500);
+        return 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function sleep(milliseconds) {
     let timeStart = new Date().getTime();

@@ -108,9 +108,8 @@ class Home extends React.Component {
         }
 
         $("button").click(function () {
-            $.getAttribute();
+            // $.getAttribute();
         })
-
     }
 
     scrapingData = () => {
