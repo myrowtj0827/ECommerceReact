@@ -6,7 +6,11 @@ import { scrapingAllProducts, ScrapingSort } from "../redux/actions/filter/scrap
 import storeLogo1 from "../assets/images/logo-icon1.png";
 import storeLogo2 from "../assets/images/logo-icon2.svg";
 import storeLogo3 from "../assets/images/logo-icon3.svg";
+
 import storeLogoNoon from "../assets/images/noon_logo_black_english.svg";
+import storeLogoSwsg from "../assets/images/storeLogoSwsg.png";
+import redseaLogo from "../assets/images/redseaLogo.svg";
+import extraLogo from "../assets/images/extraLogo.svg";
 
 class SearchFilter extends React.Component {
     constructor(props) {
@@ -42,22 +46,22 @@ class SearchFilter extends React.Component {
         const category = localStorage.getItem('category');
 
         const logoArray = {
-            'https://www.noon.com/saudi-en/': storeLogoNoon,
-            'https://blackbox.com.sa': storeLogo2,
-            'https://www.amazon.sa': storeLogo1,
-            'https://www.extra.com/ar-sa': storeLogo3,
-            'https://www.samma3a.com/saudi-en/': storeLogo1,
-            'https://www.bukhamsen.com': storeLogo2,
-            'https://www.alsomah.com.sa': storeLogo3,
-            'https://redsea.com/en/': storeLogo3,
-            'https://www.mystore.com.sa/ar': storeLogo1,
-            'https://www.virginmegastore.sa/en/': storeLogo2,
-            'https://www.jarir.com/sa-en/': storeLogo3,
-            'https://www.electrostores.com/site/': storeLogo1,
-            'https://swsg.co/ar/': storeLogo2,
-            'https://www.xcite.com.sa/ar/': storeLogo3,
-            'https://www.ubuy.com.sa/ar/': storeLogo1,
-            'https://www.lowimart.com': storeLogo2
+            'noon.com': storeLogoNoon, // completed
+            'blackbox.com.sa': storeLogo2,
+            'amazon.sa': storeLogo1,
+            'extra.com': extraLogo, //completed
+            'samma3a.com': storeLogo1,
+            'bukhamsen.com': storeLogo2,
+            'alsomah.com.sa': storeLogo3,
+            'redsea.com': redseaLogo, // completed
+            'mystore.com.sa': storeLogo1,
+            'virginmegastore.sa': storeLogo2,
+            'jarir.com': storeLogo3,
+            'electrostores.com': storeLogo1,
+            'swsg.co': storeLogoSwsg, // completed
+            'xcite.com': storeLogo3,
+            'ubuy.com': storeLogo1,
+            'lowimart.com': storeLogo2
         };
 
         return (
@@ -133,7 +137,7 @@ class SearchFilter extends React.Component {
                                                             <div className="product-name">{item.scraping_name}</div>
                                                             <div className="w3-row justify-filter-content">
                                                                 <div className="w3-col l3 m2 s2">
-                                                                    <img className="store-logo-icon" src={logoArray[item.scraping_store_address]} alt="" />
+                                                                    <img className="store-logo-icon" src={logoArray[item.scraping_store_address.replace('http://','').replace('https://','').replace('www.','').split(/[/?#]/)[0]]} alt="" />
                                                                 </div>
                                                                 <div className="w3-col l9 m10 s10 description-product">{item.scraping_description}</div>
                                                             </div>
@@ -164,7 +168,6 @@ class SearchFilter extends React.Component {
                                 <div className="btn-np">3</div>
 
                                 <div className="btn-NL">Next</div>
-
                                 <div className="btn-NL">Last</div>
                                 <img className="btn-np"  src={require("../assets/images/next.png")} alt="" />
                             </div>

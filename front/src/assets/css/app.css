@@ -531,6 +531,10 @@ color: white !important;
   transition: all .25s linear;
 }
 
+.card-bg-padding:hover {
+  opacity: 0.5;
+}
+
 .card-bg-slider {
   margin-bottom: 25px;
   padding: 15px;
@@ -541,6 +545,7 @@ color: white !important;
 
 .img-item {
   width: 100%;
+  max-width: 250px;
   min-height: 100px;
   color: rgba(255,255,255,0.7);
 
@@ -685,7 +690,7 @@ color: white !important;
 
 .store-logo-icon {
   width: 100%;
-  max-width: 60px;
+  max-width: 100px;
 }
 
 .product-name {

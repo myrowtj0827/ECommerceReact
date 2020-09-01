@@ -23,7 +23,6 @@ router.post("/register-product", async (req, res) => {
 router.get("/get-product-all", async (req, res) => {
     Filter.find({}).then( productList =>  {
         if(productList){
-
             return res.status(200).json({results: [...productList]});
         }
         else{

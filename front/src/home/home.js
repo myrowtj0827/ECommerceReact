@@ -36,6 +36,7 @@ class Home extends React.Component {
             scraping_description: '',
             scraping_price: '',
 
+            nProduct: 0,
         }
     };
 
@@ -580,7 +581,8 @@ class Home extends React.Component {
                     <div className="flex-card">
                         {
                             scrapingList && scrapingList.map((item, key) => {
-                                if (key < 8) {
+                                 if ((this.state.nProduct < 8) && (typeof (item.scraping_price) !== "undefined")) {
+                                    this.state.nProduct ++;
                                     return (
                                         <div className="w3-card card-bg-padding">
                                             <a href={item.scraping_store_address}><img className="img-item" key={key} src={item.scraping_photo_link}/></a>
@@ -589,7 +591,7 @@ class Home extends React.Component {
                                             <div className="red-txt">SAR {item.scraping_price}</div>
                                         </div>
                                     )
-                                }
+                                 }
                             })
                         }
                     </div>
@@ -598,7 +600,7 @@ class Home extends React.Component {
                         <div className="flex-card">
                         {
                             scrapingList && scrapingList.map((item, key) => {
-                                if (key >= 8) {
+                                if ((this.state.nProduct >= 8) && (typeof (item.scraping_price) !== "undefined")){
                                     return (
                                         <div className="w3-card card-bg-padding">
                                             <a href={item.scraping_store_address}><img className="img-item" key={key} src={item.scraping_photo_link}/></a>
@@ -621,7 +623,6 @@ class Home extends React.Component {
                 <section className="landing-footer">
                     <div className="">All prices are in USD</div>
                 </section>
-
             </>
         );
     }
